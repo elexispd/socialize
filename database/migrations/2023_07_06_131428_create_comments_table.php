@@ -16,12 +16,12 @@ return new class extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->string("username");
-            $table->string("post_id");
+            $table->foreignId("post_id");
             $table->text("comment");
             $table->timestamps();
 
-             $table->foreign('username')->references('username')->on('users')->onDelete('cascade');
-             $table->foreign('post_id')->references('post_id')->on('posts')->onDelete('cascade');
+            $table->foreign('username')->references('username')->on('users')->onDelete('cascade');
+             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
         });
     }
 

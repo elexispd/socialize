@@ -21,11 +21,15 @@ return new class extends Migration
             $table->string('phone_number')->unique()->nullable();
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('gender');
+            $table->string('gender')->nullable();
+            $table->string('relationship')->nullable();
+            $table->string('location')->nullable();
+            $table->string('about')->nullable();
+            $table->date('birthday');
             $table->timestamp('email_verified_at')->nullable();
             $table->boolean('is_online');
             $table->timestamp('last_seen')->nullable();
-            $table->date('dob');
+            $table->date('status');
             $table->rememberToken();
             $table->timestamps();
         });

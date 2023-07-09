@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->string("username");
-            $table->string("friend_username");
+            $table->string('username');
+            $table->string('friend_username');
             $table->text('content')->nullable();
             $table->string('photo')->nullable();
             $table->timestamps();
@@ -25,6 +25,7 @@ return new class extends Migration
             $table->foreign('friend_username')->references('username')->on('users')->onDelete('cascade');
         });
     }
+
 
     /**
      * Reverse the migrations.
