@@ -357,8 +357,10 @@
                                     <img src="images/avatars/avatar-2.jpg" alt="">
                                 </div>
                                 <div class="user_name">
-                                    <div> Stella Johnson </div>
-                                    <span> @johnson</span>
+                                    <div> 
+                                        {{ auth()->user()->getFullname() }}
+                                   </div>
+                                   <span>&#64;{{ auth()->user()->username }}</span>
                                 </div>
                             </a>
                             <hr>

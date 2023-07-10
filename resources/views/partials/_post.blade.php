@@ -7,7 +7,11 @@
                 <img src="images/avatars/avatar-2.jpg" class="bg-gray-200 border border-white rounded-full w-10 h-10">
             </a>
             <div class="flex-1 font-semibold capitalize">
-                <a href="{{ Route('timeline') }}" class="text-black dark:text-gray-100"> Johnson smith </a>
+                <a href="{{ Route('timeline') }}" class="text-black dark:text-gray-100"> 
+                    @auth
+                        {{ auth()->user()->getFullname() }}
+                    @endauth
+                 </a>
                 <div class="text-gray-700 flex items-center space-x-2"> 5 <span> hrs </span> <ion-icon name="people"></ion-icon></div>
             </div>
         </div>

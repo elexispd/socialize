@@ -69,14 +69,14 @@
 
                         <div>
                             <label class="mb-0"> Username </label>
-                            <input type="text" placeholder="Username" class="bg-gray-100 h-12 mt-2 px-3 rounded-md w-full" name="username">
+                            <input type="text" placeholder="Username" class="bg-gray-100 h-12 mt-2 px-3 rounded-md w-full" name="username" value="{{ @old('username') }}">
                             @error('username')
                                 <span class="invalid-feedback text-red-400" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
-
+                        
                         <div>
                             <label class="mb-0"> Password </label>
                             <input type="password" placeholder="******" class="bg-gray-100 h-12 mt-2 px-3 rounded-md w-full" name="password">
@@ -86,7 +86,7 @@
                                 </span>
                             @enderror
                         </div>
-
+                         
                         <div>
                             <button type="submit" class="bg-blue-600 font-semibold p-2 mt-5 rounded-md text-center text-white w-full">
                                 Sign in
