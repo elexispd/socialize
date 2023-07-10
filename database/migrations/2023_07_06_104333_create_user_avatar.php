@@ -16,8 +16,10 @@ return new class extends Migration
         Schema::create('users_avatar', function (Blueprint $table) {
             $table->id();
             $table->string("username")->unique();
-            $table->string("profile_photo")->unique();
-            $table->string("featured_photo")->unique();
+            $table->string("profile_photo_name")->unique();
+            $table->string("profile_photo_path");
+            $table->string("featured_photo_name")->unique();
+            $table->string("featured_photo_path");
             $table->timestamps();
         });
     }

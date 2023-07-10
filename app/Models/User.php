@@ -18,10 +18,14 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
         'password',
+        'username'
     ];
+
+    public function getAuthIdentifierName()
+    {
+        return 'username'; // Set the column name for the username
+    }
 
     /**
      * The attributes that should be hidden for serialization.
