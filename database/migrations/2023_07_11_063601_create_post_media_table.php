@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users_avatar', function (Blueprint $table) {
+        Schema::create('post_media', function (Blueprint $table) {
             $table->id();
-            $table->string("username")->unique();
-            $table->string("profile_photo_name")->unique();
-            $table->string("profile_photo_path");
-            $table->string("featured_photo_name")->unique();
-            $table->string("featured_photo_path");
+            $table->string("username", 50);
+            $table->string("media_path", 50);
+            $table->string("media_name", 100);
             $table->timestamps();
 
             $table->foreign('username')->references('username')->on('users')->onDelete('cascade');
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_avatar');
+        Schema::dropIfExists('post_media');
     }
 };

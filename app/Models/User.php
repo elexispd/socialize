@@ -27,6 +27,8 @@ class User extends Authenticatable
         return 'username'; // Set the column name for the username
     }
 
+
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -50,4 +52,24 @@ class User extends Authenticatable
     public function getFullname() {
         return $this->firstname . " ". $this->lastname;
     }
+
+    
+
+    public function avatar()
+    {
+        return $this->hasOne(UserAvatar::class, 'username', 'username');
+    }
+
+    public function getAvatar()
+    {
+        if ($this->avatar) {
+            $avatar = $this->avatar;
+            $avatarPath = $avatar->profile_photo_path . '/' . $avatar->profile_photo_name;
+            return asset($avatarPath);
+        } else {
+            return asset('useravatar/default.jpg');
+        }
+    }
+
+
 }

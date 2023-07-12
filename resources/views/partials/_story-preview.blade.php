@@ -1,4 +1,4 @@
-    <div class="story-prev">
+<div class="story-prev">
 
     <div class="story-sidebar uk-animation-slide-left-medium">
         <div class="md:flex justify-between items-center py-2 hidden">

@@ -348,7 +348,7 @@
         
     
                         <a href="#">
-                            <img src="images/avatars/avatar-2.jpg" class="is_avatar" alt="">
+                            <img src="{{ auth()->user()->getAvatar() }}" class="is_avatar" alt="">
                         </a>
                         <div uk-drop="mode: click;offset:5" class="header_dropdown profile_dropdown">
 

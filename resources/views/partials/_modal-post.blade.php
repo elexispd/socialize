@@ -1,7 +1,7 @@
 <!-- create post -->
 <div class="card lg:mx-0 p-4" uk-toggle="target: #create-post-modal">
     <div class="flex space-x-3">
-        <img src="images/avatars/avatar-2.jpg" class="w-10 h-10 rounded-full">
+        <img src="{{ auth()->user()->getAvatar() }}" class="w-10 h-10 rounded-full">
         <input placeholder="What's Your Mind ? Hamse!" class="bg-gray-100 hover:bg-gray-200 flex-1 h-10 px-6 rounded-full"> 
     </div>
     <div class="grid grid-flow-col pt-3 -mx-1 -mb-1 font-semibold text-sm">
@@ -30,7 +30,8 @@
             <button class="uk-modal-close-default bg-gray-100 rounded-full p-2.5 right-2" type="button" uk-close uk-tooltip="title: Close ; pos: bottom ;offset:7"></button>
         </div>
         <div class="flex flex-1 items-start space-x-4 p-5">
-            <img src="images/avatars/avatar-2.jpg"
+            
+            <img src="{{ auth()->user()->getAvatar() }}"
                 class="bg-gray-200 border border-white rounded-full w-11 h-11">
             <div class="flex-1 pt-2">
                 <textarea class="uk-textare text-black shadow-none focus:shadow-none text-xl font-medium resize-none" rows="5"
