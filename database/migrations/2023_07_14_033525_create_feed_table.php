@@ -13,16 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('friends', function (Blueprint $table) {
+        Schema::create('feed', function (Blueprint $table) {
             $table->id();
-            $table->string("username");
-            $table->string("friend_username");
-            $table->boolean("status");
+            $table->string('username');
+            $table->text('content');
             $table->timestamps();
-
-
+            
             $table->foreign('username')->references('username')->on('users')->onDelete('cascade');
-            $table->foreign('friend_username')->references('username')->on('users')->onDelete('cascade');
         });
     }
 
@@ -33,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('friends');
+        Schema::dropIfExists('feed');
     }
 };

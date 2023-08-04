@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -25,6 +27,10 @@ class User extends Authenticatable
     public function getAuthIdentifierName()
     {
         return 'username'; // Set the column name for the username
+    }
+
+    public function getRouteKeyName() {
+        return 'username';
     }
 
 
@@ -70,6 +76,22 @@ class User extends Authenticatable
             return asset('useravatar/default.jpg');
         }
     }
+
+    public function getFriends() {
+        $currentUser = $this;
+        $otherUsers = User::where("username", "!=", $currentUser->username)->take(15)->get();
+
+        $friends = DB::table('friends')
+            ->join('users', 'friends.friend_username', '=', 'users.username')
+            ->where('friends.username', $currentUser->username)
+            ->select('users.*')
+            ->get();
+
+        return $friends;
+    }
+
+   
+
 
 
 }

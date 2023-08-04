@@ -2,7 +2,7 @@
 <div class="card lg:mx-0 p-4" uk-toggle="target: #create-post-modal">
     <div class="flex space-x-3">
         <img src="{{ auth()->user()->getAvatar() }}" class="w-10 h-10 rounded-full">
-        <input placeholder="What's Your Mind ? Hamse!" class="bg-gray-100 hover:bg-gray-200 flex-1 h-10 px-6 rounded-full"> 
+        <input placeholder="What's On Your Mind ? " class="bg-gray-100 hover:bg-gray-200 flex-1 h-10 px-6 rounded-full"> 
     </div>
     <div class="grid grid-flow-col pt-3 -mx-1 -mb-1 font-semibold text-sm">
         <div class="hover:bg-gray-100 flex items-center p-1.5 rounded-md cursor-pointer"> 

@@ -7,6 +7,6 @@ use Illuminate\Http\Request;
 class FriendController extends Controller
 {
     public function index() {
-        return view("explore.explore");
+        return view("");
     }
 }
