@@ -321,7 +321,7 @@
                                             </div>
                                         </a>
                                     </li>
-                                    <li>
+                                    <li> 
                                         <a href="#">
                                             <div class="drop_avatar"> <img src="images/avatars/avatar-3.jpg" alt="">
                                             </div>

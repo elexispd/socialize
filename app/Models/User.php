@@ -27,6 +27,10 @@ class User extends Authenticatable
         return 'username'; // Set the column name for the username
     }
 
+    public function getRouteKeyName() {
+        return 'username';
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
