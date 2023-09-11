@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Favicon -->
-    <link href="images/favicon.png" rel="icon" type="image/png">
+    <link href="{{asset('images/favicon.png')}}" rel="icon" type="image/png">
 
     <!-- Basic Page Needs
         ================================================== -->
@@ -16,13 +16,13 @@
 
     <!-- icons
     ================================================== -->
-    <link rel="stylesheet" href="css/icons.css">
+    <link rel="stylesheet" href="{{asset('css/icons.css')}}">
 
     <!-- CSS 
     ================================================== --> 
-    <link rel="stylesheet" href="css/uikit.css">
-    <link rel="stylesheet" href="css/style.css">
-     <link href="css/tailwind.css" rel="stylesheet"> 
+    <link rel="stylesheet" href="{{ asset('css/uikit.css') }}"">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+     <link href="{{ asset('css/tailwind.css') }}" rel="stylesheet"> 
 
 
 </head> 
@@ -83,13 +83,19 @@
   
     <!-- Javascript
     ================================================== -->
-     <script src="../../code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="js/tippy.all.min.js"></script>
-    <script src="js/uikit.js"></script>
-    <script src="js/simplebar.js"></script>
-    <script src="js/custom.js"></script>
-    <script src="js/bootstrap-select.min.js"></script>
-    <script src="../../unpkg.com/ionicons%405.2.3/dist/ionicons.js"></script>
+     {{-- <script src="../../code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> --}}
+     <script src="{{ asset('js/jquery-3.6.0.min.js') }}" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+     <script src="{{ asset('ionicons/dist/ionicons.js') }}"></script>
+
+    <script src="{{ asset('js/tippy.all.min.js') }}"></script>
+    <script src="{{ asset('js/uikit.js') }}"></script>
+    <script src="{{ asset('js/simplebarjs') }}"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-select..min.js') }}"></script>
+    <script src="{{ asset('ionicons/dist/ionicons.js') }}"></script>
+
+    {{-- <script src="../../unpkg.com/ionicons%405.2.3/dist/ionicons.js"></script> --}}
 
 </body>
 

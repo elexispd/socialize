@@ -4,10 +4,10 @@
     <div class="flex justify-between items-center lg:p-4 p-2.5">
         <div class="flex flex-1 items-center space-x-4">
             <a href="#">
-                <img src="images/avatars/avatar-2.jpg" class="bg-gray-200 border border-white rounded-full w-10 h-10">
+                <img src="{{ auth()->user()->getAvatar() }}" class="bg-gray-200 border border-white rounded-full w-10 h-10">
             </a>
             <div class="flex-1 font-semibold capitalize">
-                <a href="{{ Route('timeline') }}" class="text-black dark:text-gray-100"> 
+                <a href="{{ Route('myTimeline') }}" class="text-black dark:text-gray-100"> 
                     @auth
                         {{ auth()->user()->getFullname() }}
                     @endauth

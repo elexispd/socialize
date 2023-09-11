@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string("featured_photo_name")->unique();
             $table->string("featured_photo_path");
             $table->timestamps();
+
+            $table->foreign('username')->references('username')->on('users')->onDelete('cascade');
         });
     }
 

@@ -30,8 +30,9 @@ Route::post('/signout', 'App\Http\Controllers\Auth\LoginController@logout')->nam
 Route::group(["middleware" => "auth"], function() {
     Route::get('/', [App\Http\Controllers\FeedController::class, 'index'])->name('feed');
 
-    Route::get('/timeline', [App\Http\Controllers\UserController::class, 'index'])->name("timeline");
+    Route::get('/timeline', [App\Http\Controllers\UserController::class, 'timeline'])->name("myTimeline");
+    Route::get('/timeline/{username}', [App\Http\Controllers\UserController::class, 'timeline'])->name("timeline");
     Route::get('/chat', [App\Http\Controllers\MessageController::class, 'index'])->name("messages");
-    Route::get('/explore', [App\Http\Controllers\FriendController::class, 'index'])->name("explore");
+    Route::get('/explore', [App\Http\Controllers\ExploreController::class, 'index'])->name("explore");
 });
 

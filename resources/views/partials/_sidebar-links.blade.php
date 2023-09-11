@@ -39,34 +39,15 @@
         <h3 class="side-title"> Contacts </h3>
 
         <div class="contact-list my-2 ml-1">
-            
-            <a href="{{ Route("messages") }}">
-                <div class="contact-avatar">
-                    <img src="images/avatars/avatar-1.jpg" alt="">
-                    <span class="user_status status_online"></span>
-                </div>
-                <div class="contact-username"> Dennis Han</div>
-            </a>
-            <a href="chats-friend.html">
-                <div class="contact-avatar">
-                    <img src="images/avatars/avatar-2.jpg" alt="">
-                    <span class="user_status"></span>
-                </div>
-                <div class="contact-username"> Erica Jones</div>
-            </a>
-            <a href="chats-friend.html">
-                <div class="contact-avatar">
-                    <img src="images/avatars/avatar-7.jpg" alt="">
-                </div>
-                <div class="contact-username">Stella Johnson</div>
-            </a>
-            <a href="chats-friend.html">
-                <div class="contact-avatar">
-                    <img src="images/avatars/avatar-4.jpg" alt="">
-                </div>
-                <div class="contact-username"> Alex Dolgove</div>
-            </a>
-
+            @foreach (auth()->user()->getFriends() as $friend)
+                <a href="{{ Route("timeline", ['username' => urlencode($friend->username)] ) }}">
+                    <div class="contact-avatar">
+                        <img src="{{asset('useravatar/default.jpg')}}" alt="">
+                        <span class="user_status {{ $friend->is_online ? 'status_online' : 'status_offline' }}"></span>
+                    </div>
+                    <div class="contact-username"> {{ $friend->firstname }} {{ $friend->lastname }} </div>
+                </a>
+            @endforeach
         </div>
 
             <a href="feed.html"> 
