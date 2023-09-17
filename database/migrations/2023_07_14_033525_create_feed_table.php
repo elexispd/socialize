@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('feed', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
+            $table->foreignId('user_id');
             $table->text('content');
             $table->timestamps();
-            
-            $table->foreign('username')->references('username')->on('users')->onDelete('cascade');
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -30,6 +30,8 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
+
         Schema::dropIfExists('feed');
     }
 };

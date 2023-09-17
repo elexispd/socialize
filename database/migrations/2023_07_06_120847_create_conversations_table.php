@@ -15,16 +15,16 @@ return new class extends Migration
     {
         Schema::create('conversations', function (Blueprint $table) {
             $table->id();
-            $table->string("username");
-            $table->string("friend_username");
+            $table->foreignId("sender_id");
+            $table->foreignId("receiver_id");
             $table->timestamps();
 
-            $table->foreign('username')->references('username')->on('users')->onDelete('cascade');
-            $table->foreign('friend_username')->references('username')->on('users')->onDelete('cascade');
+            $table->foreign('sender_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('receiver_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
-   
+
 
 
 
@@ -35,6 +35,7 @@ return new class extends Migration
      */
     public function down()
     {
+
         Schema::dropIfExists('conversations');
     }
 };

@@ -13,16 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('friends', function (Blueprint $table) {
+        Schema::create('friendship', function (Blueprint $table) {
             $table->id();
-            $table->string("username");
-            $table->string("friend_username");
+            $table->foreignId("user_id");
+            $table->foreignId("friend_id");
             $table->boolean("status");
             $table->timestamps();
 
 
-            $table->foreign('username')->references('username')->on('users')->onDelete('cascade');
-            $table->foreign('friend_username')->references('username')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('friend_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -33,6 +33,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('friends');
+        Schema::disableForeignKeyConstraints();
+
+        Schema::dropIfExists('friendship');
     }
 };

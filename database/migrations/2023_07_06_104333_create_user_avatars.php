@@ -13,16 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users_avatar', function (Blueprint $table) {
+        Schema::create('user_avatars', function (Blueprint $table) {
             $table->id();
-            $table->string("username")->unique();
-            $table->string("profile_photo_name")->unique();
-            $table->string("profile_photo_path");
-            $table->string("featured_photo_name")->unique();
+            $table->foreignId("user_id")->unique();
+            $table->string("avatar_path");
             $table->string("featured_photo_path");
             $table->timestamps();
 
-            $table->foreign('username')->references('username')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -33,6 +31,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_avatar');
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('user_avatars');
     }
+
+
 };

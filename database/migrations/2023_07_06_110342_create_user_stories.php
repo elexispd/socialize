@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users_story', function (Blueprint $table) {
+        Schema::create('user_stories', function (Blueprint $table) {
             $table->id();
-            $table->string("username");
-            $table->string("story_text", 255)->nullable();
-            $table->string("story_photo")->nullable();
+            $table->foreignId("user_id");
+            $table->string("text", 255)->nullable();
+            $table->string("photo_url")->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +29,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_story');
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('user_stories');
     }
 };
