@@ -33,11 +33,8 @@ class User extends Authenticatable
         return 'username';
     }
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 482515b7a90d159067fdb0a0bb44a73464e33ab0
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -62,7 +59,7 @@ class User extends Authenticatable
         return $this->firstname . " ". $this->lastname;
     }
 
-    
+
 
     public function avatar()
     {
@@ -93,7 +90,7 @@ class User extends Authenticatable
         return $friends;
     }
 
-   
+
 
 
 
