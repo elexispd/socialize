@@ -4,14 +4,14 @@
 
 <div class="main_content">
     <div class="mcontainer">
-        
+
         <!--  Feeds  -->
         <div class="lg:flex lg:space-x-10">
-            <div class="lg:w-3/4 lg:px-20 space-y-7"> 
-        
+            <div class="lg:w-3/4 lg:px-20 space-y-7">
+
                 {{-- <!-- user story -->
                 @include("partials._user-story")
-                
+
                 <!-- create post -->
                 @include('partials._modal-post')
                 @include('partials._birthdays')
@@ -22,7 +22,7 @@
 
                 <!-- user story -->
                 <div class="user_story grid md:grid-cols-5 grid-cols-3 gap-2 lg:-mx-20 relative">
-                
+
                     <a href="#create-post" uk-toggle="target: body ; cls: story-active">
                         <div class="single_story">
                             <img src="assets/images/avatars/avatar-lg-1.jpg" alt="">
@@ -58,15 +58,15 @@
                             <div class="story-content"> <h4> Stella Johnson</h4> </div>
                         </div>
                     </a>
-                    
-                    <span class="absolute bg-white lg:flex items-center justify-center p-2 rounded-full 
-                    shadow-md text-xl w-9 z-10 uk-position-center-right -mr-4 hidden" uk-toggle="target: body ; cls: story-active"> 
+
+                    <span class="absolute bg-white lg:flex items-center justify-center p-2 rounded-full
+                    shadow-md text-xl w-9 z-10 uk-position-center-right -mr-4 hidden" uk-toggle="target: body ; cls: story-active">
                     <i class="icon-feather-chevron-right"></i></span>
-                    
+
                 </div>
 
                 @include('partials._birthdays')
-              
+
                 <!-- create post -->
                 @include('partials._modal-post')
 
@@ -75,16 +75,16 @@
 
 
 
-             
-                
+
+
                 <div class="flex justify-center mt-6">
                     <a href="#" class="bg-white dark:bg-gray-900 font-semibold my-3 px-6 py-2 rounded-full shadow-md dark:bg-gray-800 dark:text-white">
                         Load more ..</a>
                 </div>
-        
+
             </div>
             <div class="lg:w-72 w-full">
-        
+
                 <a href="#birthdays" uk-toggle>
                     <div class="bg-white mb-5 px-4 py-3 rounded-md shadow">
                         <h3 class="text-line-through font-semibold mb-1"> Birthdays </h3>
@@ -98,17 +98,18 @@
                 </a>
 
                 <h3 class="text-xl font-semibold"> Contacts </h3>
-        
+
                 <div class="" uk-sticky="offset:80">
-        
+
                     <nav class="responsive-nav border-b extanded mb-2 -mt-2">
                         <ul uk-switcher="connect: #group-details; animation: uk-animation-fade">
-                            <li class="uk-active"><a class="active" href="#0">  Friends  <span> {{ $friends->count() }}</span> </a></li>
+                            {{-- <li class="uk-active"><a class="active" href="#0">  Friends  <span> {{ $friends->count() }}</span> </a></li> --}}
                         </ul>
                     </nav>
-        
+
                     <div class="contact-list">
-                        @foreach ($friends as $friend)
+                        @isset($friends)
+                            @foreach ($friends as $friend)
                             <a href="#">
                                 <div class="contact-avatar">
                                     <img src="{{ asset('useravatar/default.jpg') }}" alt="">
@@ -123,8 +124,8 @@
                                         <span class="user_status status_online"></span>
                                     </div>
                                     <div class="contact-username">  {{ $friend->firstname }} {{ $friend->lastname }} </div>
-                                    <p> 
-                                        <ion-icon name="people" class="text-lg mr-1"></ion-icon> Become friends with 
+                                    <p>
+                                        <ion-icon name="people" class="text-lg mr-1"></ion-icon> Become friends with
                                         <strong> Stella Johnson </strong> and <strong> 14 Others</strong>
                                     </p>
                                     <div class="contact-list-box-btns">
@@ -132,22 +133,24 @@
                                             <i class="uil-envelope mr-1"></i> Send message</button>
                                         <button type="button"  href="#" class="button secondary button-icon mr-2">
                                             <i class="uil-list-ul"> </i> </button>
-                                        <button type="button" a href="#" class="button secondary button-icon"> 
-                                            <i class="uil-ellipsis-h"> </i> 
+                                        <button type="button" a href="#" class="button secondary button-icon">
+                                            <i class="uil-ellipsis-h"> </i>
                                         </button>
                                     </div>
                                 </div>
                             </div>
                         @endforeach
-        
-                        
-        
-        
+                        @endisset
+
+
+
+
+
                     </div>
-        
-        
+
+
                 </div>
-        
+
             </div>
         </div>
 
@@ -272,7 +275,7 @@
                         <p> <span class="story-count"> 1 new </span> <span class="story-time"> 4Dy ago</span> </p>
                     </div>
                 </a>
-                
+
 
             </div>
 
@@ -356,9 +359,9 @@
         </svg>
     </span>
 
-    
 
-</div> 
+
+</div>
 
 
 @endsection

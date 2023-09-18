@@ -6,15 +6,15 @@
     <div class="mcontainer">
         <!-- Profile cover -->
         <div class="profile user-profile">
-  
+
             <div class="profiles_banner">
                 <img src="{{ asset('assets/images/avatars/profile-cover.jpg') }}" alt="">
                 <div class="profile_action absolute bottom-0 right-0 space-x-1.5 p-3 text-sm z-50 hidden lg:flex">
-                  <a href="#" class="flex items-center justify-center h-8 px-3 rounded-md bg-gray-700 bg-opacity-70 text-white space-x-1.5"> 
+                  <a href="#" class="flex items-center justify-center h-8 px-3 rounded-md bg-gray-700 bg-opacity-70 text-white space-x-1.5">
                       <ion-icon name="crop-outline" class="text-xl"></ion-icon>
                       <span> Crop  </span>
                   </a>
-                  <a href="#" class="flex items-center justify-center h-8 px-3 rounded-md bg-gray-700 bg-opacity-70 text-white space-x-1.5"> 
+                  <a href="#" class="flex items-center justify-center h-8 px-3 rounded-md bg-gray-700 bg-opacity-70 text-white space-x-1.5">
                       <ion-icon name="create-outline" class="text-xl"></ion-icon>
                       <span> Edit </span>
                   </a>
@@ -23,7 +23,7 @@
             <div class="profiles_content">
 
                 <div class="profile_avatar">
-                    <div class="profile_avatar_holder"> 
+                    <div class="profile_avatar_holder">
                         <img src="{{asset('assets/images/avatars/avatar-8.jpg')}}" alt="">
                     </div>
                     <div class="user_status status_online"></div>
@@ -41,27 +41,27 @@
                 <nav class="responsive-nav pl-3">
                     <ul  uk-switcher="connect: #timeline-tab; animation: uk-animation-fade">
                         <li><a href="#">Timeline</a></li>
-                        <li><a href="#">Friend <span> {{ $user->getFriends()->count() }}</span> </a></li>
+                        <li><a href="#">Friend <span> 0 </span> </a></li>
                         <li><a href="#">Photoes </a></li>
-                        <li><a href="#">Pages</a></li> 
-                        <li><a href="#">Groups</a></li> 
-                        <li><a href="#">Videos</a></li> 
+                        <li><a href="#">Pages</a></li>
+                        <li><a href="#">Groups</a></li>
+                        <li><a href="#">Videos</a></li>
                     </ul>
                 </nav>
 
                 <!-- button actions -->
                 <div class="flex items-center space-x-1.5 flex-shrink-0 pr-4 mb-2 justify-center order-1 relative">
-                    
+
                     <!-- add story -->
-                    <a href="#" class="flex items-center justify-center h-10 px-5 rounded-md bg-blue-600 text-white space-x-1.5 hover:text-white"  uk-toggle="target: #create-post-modal"> 
+                    <a href="#" class="flex items-center justify-center h-10 px-5 rounded-md bg-blue-600 text-white space-x-1.5 hover:text-white"  uk-toggle="target: #create-post-modal">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5">
                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path>
                         </svg>
                         <span> Add Your Story </span>
                     </a>
-                   
+
                     <!-- search icon -->
-                    <a href="#" class="flex items-center justify-center h-10 w-10 rounded-md bg-gray-100" uk-toggle="target: #profile-search;animation: uk-animation-slide-top-small"> 
+                    <a href="#" class="flex items-center justify-center h-10 w-10 rounded-md bg-gray-100" uk-toggle="target: #profile-search;animation: uk-animation-slide-top-small">
                       <ion-icon name="search" class="text-xl"></ion-icon>
                     </a>
                     <!-- search dropdown -->
@@ -70,42 +70,42 @@
                         <input type="text" placeholder="Search.." class="flex-1">
                         <ion-icon name="close-outline" class="text-2xl hover:bg-gray-100 p-1 rounded-full mr-2 cursor-pointer" uk-toggle="target: #profile-search;animation: uk-animation-slide-top-small"></ion-icon>
                     </div>
-                    
+
                     <!-- more icon -->
-                    <a href="#" class="flex items-center justify-center h-10 w-10 rounded-md bg-gray-100"> 
+                    <a href="#" class="flex items-center justify-center h-10 w-10 rounded-md bg-gray-100">
                         <ion-icon name="ellipsis-horizontal" class="text-xl"></ion-icon>
                     </a>
                     <!-- more drowpdown -->
-                    <div class="bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700"  
+                    <div class="bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700"
                       uk-drop="mode: click;pos: bottom-right;animation: uk-animation-slide-bottom-small; offset:5">
                           <ul class="space-y-1">
-                            <li> 
+                            <li>
                                 <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-100 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
                                    <ion-icon name="arrow-redo-outline" class="pr-2 text-xl"></ion-icon> Share Profile
-                                </a> 
+                                </a>
                             </li>
-                            <li> 
+                            <li>
                                 <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-100 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
-                                  <ion-icon name="create-outline" class="pr-2 text-xl"></ion-icon>  Account setting 
-                                </a> 
+                                  <ion-icon name="create-outline" class="pr-2 text-xl"></ion-icon>  Account setting
+                                </a>
                             </li>
-                            <li> 
+                            <li>
                                 <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-100 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
                                   <ion-icon name="notifications-off-outline" class="pr-2 text-lg"></ion-icon>   Disable notifications
-                                </a> 
-                            </li> 
-                            <li> 
+                                </a>
+                            </li>
+                            <li>
                                 <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-100 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
-                                  <ion-icon name="star-outline"  class="pr-2 text-xl"></ion-icon>  Add favorites 
-                                </a> 
+                                  <ion-icon name="star-outline"  class="pr-2 text-xl"></ion-icon>  Add favorites
+                                </a>
                             </li>
                             <li>
                               <hr class="-mx-2 my-2 dark:border-gray-800">
                             </li>
-                            <li> 
+                            <li>
                                 <a href="#" class="flex items-center px-3 py-2 text-red-500 hover:bg-red-50 hover:text-red-500 rounded-md dark:hover:bg-red-600">
                                   <ion-icon name="stop-circle-outline" class="pr-2 text-xl"></ion-icon>  Unfriend
-                                </a> 
+                                </a>
                             </li>
                           </ul>
                     </div>
@@ -114,9 +114,9 @@
             </div>
 
         </div>
-        
+
         <div class="uk-switcher lg:mt-8 mt-4" id="timeline-tab">
-  
+
             <!-- Timeline -->
             <div class="md:flex md:space-x-6 lg:mx-16">
                 <div class="space-y-5 flex-shrink-0 md:w-7/12">
@@ -125,27 +125,27 @@
                    <div class="card lg:mx-0 p-4" uk-toggle="target: #create-post-modal">
                        <div class="flex space-x-3">
                            <img src="{{ asset('assets/images/avatars/avatar-2.jpg') }}" class="w-10 h-10 rounded-full">
-                           <input placeholder="What's Your Mind ? Hamse!" class="bg-gray-100 hover:bg-gray-200 flex-1 h-10 px-6 rounded-full"> 
+                           <input placeholder="What's Your Mind ? Hamse!" class="bg-gray-100 hover:bg-gray-200 flex-1 h-10 px-6 rounded-full">
                        </div>
                        <div class="grid grid-flow-col pt-3 -mx-1 -mb-1 font-semibold text-sm">
-                            <div class="hover:bg-gray-100 flex items-center p-1.5 rounded-md cursor-pointer"> 
+                            <div class="hover:bg-gray-100 flex items-center p-1.5 rounded-md cursor-pointer">
                                 <svg class="bg-blue-100 h-9 mr-2 p-1.5 rounded-full text-blue-600 w-9 -my-0.5 hidden lg:block" data-tippy-placement="top" title="Tooltip" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                                Photo/Video 
+                                Photo/Video
                             </div>
-                            <div class="hover:bg-gray-100 flex items-center p-1.5 rounded-md cursor-pointer"> 
+                            <div class="hover:bg-gray-100 flex items-center p-1.5 rounded-md cursor-pointer">
                                 <svg class="bg-green-100 h-9 mr-2 p-1.5 rounded-full text-green-600 w-9 -my-0.5 hidden lg:block" uk-tooltip="title: Messages ; pos: bottom ;offset:7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" title="" aria-expanded="false"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path></svg>
-                                Tag Friend 
+                                Tag Friend
                             </div>
-                            <div class="hover:bg-gray-100 flex items-center p-1.5 rounded-md cursor-pointer"> 
+                            <div class="hover:bg-gray-100 flex items-center p-1.5 rounded-md cursor-pointer">
                                 <svg class="bg-red-100 h-9 mr-2 p-1.5 rounded-full text-red-600 w-9 -my-0.5 hidden lg:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                Fealing /Activity 
+                                Fealing /Activity
                             </div>
-                       </div> 
+                       </div>
                    </div>
 
-           
+
                    <div class="card lg:mx-0 uk-animation-slide-bottom-small">
-           
+
                        <!-- post header-->
                        <div class="flex justify-between items-center lg:p-4 p-2.5">
                            <div class="flex flex-1 items-center space-x-4">
@@ -159,52 +159,52 @@
                            </div>
                          <div>
                            <a href="#"> <i class="icon-feather-more-horizontal text-2xl hover:bg-gray-200 rounded-full p-2 transition -mr-1 dark:hover:bg-gray-700"></i> </a>
-                           <div class="bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden text-base border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700" 
+                           <div class="bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden text-base border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700"
                            uk-drop="mode: click;pos: bottom-right;animation: uk-animation-slide-bottom-small">
-                         
+
                                <ul class="space-y-1">
-                                 <li> 
+                                 <li>
                                      <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
                                       <i class="uil-share-alt mr-1"></i> Share
-                                     </a> 
+                                     </a>
                                  </li>
-                                 <li> 
+                                 <li>
                                      <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
-                                      <i class="uil-edit-alt mr-1"></i>  Edit Post 
-                                     </a> 
+                                      <i class="uil-edit-alt mr-1"></i>  Edit Post
+                                     </a>
                                  </li>
-                                 <li> 
+                                 <li>
                                      <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
                                       <i class="uil-comment-slash mr-1"></i>   Disable comments
-                                     </a> 
-                                 </li> 
-                                 <li> 
+                                     </a>
+                                 </li>
+                                 <li>
                                      <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
-                                      <i class="uil-favorite mr-1"></i>  Add favorites 
-                                     </a> 
+                                      <i class="uil-favorite mr-1"></i>  Add favorites
+                                     </a>
                                  </li>
                                  <li>
                                    <hr class="-mx-2 my-2 dark:border-gray-800">
                                  </li>
-                                 <li> 
+                                 <li>
                                      <a href="#" class="flex items-center px-3 py-2 text-red-500 hover:bg-red-100 hover:text-red-500 rounded-md dark:hover:bg-red-600">
                                       <i class="uil-trash-alt mr-1"></i>  Delete
-                                     </a> 
+                                     </a>
                                  </li>
                                </ul>
-                           
+
                            </div>
                          </div>
                        </div>
-           
+
                        <div uk-lightbox>
-                           <a href="{{ asset('assets/images/avatars/avatar-lg-3.jpg') }}">  
+                           <a href="{{ asset('assets/images/avatars/avatar-lg-3.jpg') }}">
                                <img src="{{ asset('assets/images/avatars/avatar-lg-4.jpg') }}" alt="" class="max-h-96 w-full object-cover">
                            </a>
                        </div>
 
-                       <div class="p-4 space-y-3"> 
-        
+                       <div class="p-4 space-y-3">
+
                         <div class="flex space-x-4 lg:font-bold">
                             <a href="#" class="flex items-center space-x-2">
                                 <div class="p-2 rounded-full  text-black lg:bg-gray-100 dark:bg-gray-600">
@@ -231,7 +231,7 @@
                                 <div> Share</div>
                             </a>
                         </div>
-                        <div class="flex items-center space-x-3 pt-2"> 
+                        <div class="flex items-center space-x-3 pt-2">
                             <div class="flex items-center">
                                 <img src="images/avatars/avatar-1.jpg')}}" alt="" class="w-6 h-6 rounded-full border-2 border-white dark:border-gray-900">
                                 <img src="images/avatars/avatar-4.jpg')}}" alt="" class="w-6 h-6 rounded-full border-2 border-white dark:border-gray-900 -ml-2">
@@ -241,7 +241,7 @@
                                 Liked <strong> Johnson</strong> and <strong> 209 Others </strong>
                             </div>
                         </div>
-                
+
                         <div class="border-t py-4 space-y-4 dark:border-gray-600">
                             <div class="flex">
                                 <div class="w-10 h-10 rounded-full relative flex-shrink-0">
@@ -276,11 +276,11 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
-                        
+
                         <a href="#" class="hover:text-blue-600 hover:underline">  Veiw 8 more Comments </a>
-                
+
                         <div class="bg-gray-100 rounded-full relative dark:bg-gray-800 border-t">
                             <input placeholder="Add your Comment.." class="bg-transparent max-h-10 shadow-none px-5">
                             <div class="-m-0.5 absolute bottom-0 flex items-center right-3 text-xl">
@@ -292,15 +292,15 @@
                                 </a>
                                 <a href="#">
                                     <ion-icon name="link-outline" class="hover:bg-gray-200 p-1.5 rounded-full"></ion-icon>
-                                </a> 
+                                </a>
                             </div>
                         </div>
-                
+
                     </div>
-                       
-           
-                       <div class="p-4 space-y-3"> 
-                          
+
+
+                       <div class="p-4 space-y-3">
+
                            <div class="flex space-x-4 lg:font-bold">
                                <a href="#" class="flex items-center space-x-2">
                                    <div class="p-2 rounded-full  text-black lg:bg-gray-100 dark:bg-gray-600">
@@ -327,7 +327,7 @@
                                    <div> Share</div>
                                </a>
                            </div>
-                           <div class="flex items-center space-x-3 pt-2"> 
+                           <div class="flex items-center space-x-3 pt-2">
                                <div class="flex items-center">
                                    <img src="{{ asset('assets/images/avatars/avatar-1.jpg') }}" alt="" class="w-6 h-6 rounded-full border-2 border-white dark:border-gray-900">
                                    <img src="{{ asset('assets/images/avatars/avatar-4.jpg') }}" alt="" class="w-6 h-6 rounded-full border-2 border-white dark:border-gray-900 -ml-2">
@@ -337,7 +337,7 @@
                                    Liked <strong> Johnson</strong> and <strong> 209 Others </strong>
                                </div>
                            </div>
-           
+
                            <div class="border-t py-4 space-y-4 dark:border-gray-600">
                                <div class="flex">
                                    <div class="w-10 h-10 rounded-full relative flex-shrink-0">
@@ -372,11 +372,11 @@
                                        </div>
                                    </div>
                                </div>
-                              
+
                            </div>
-                           
+
                            <a href="#" class="hover:text-blue-600 hover:underline">  Veiw 8 more Comments </a>
-           
+
                            <div class="bg-gray-100 rounded-full relative dark:bg-gray-800 border-t">
                                <input placeholder="Add your Comment.." class="bg-transparent max-h-10 shadow-none px-5">
                                <div class="-m-0.5 absolute bottom-0 flex items-center right-3 text-xl">
@@ -388,73 +388,73 @@
                                    </a>
                                    <a href="#">
                                        <ion-icon name="link-outline" class="hover:bg-gray-200 p-1.5 rounded-full"></ion-icon>
-                                   </a> 
+                                   </a>
                                </div>
                            </div>
-           
-                       </div>
-           
-                   </div>
-                   
 
-           
+                       </div>
+
+                   </div>
+
+
+
                    <div class="flex justify-center mt-6">
                        <a href="#" class="bg-white font-semibold my-3 px-6 py-2 rounded-full shadow-md dark:bg-gray-800 dark:text-white">
                            Load more ..</a>
                    </div>
-               
+
 
                 </div>
 
                 <!-- Sidebar -->
                 <div class="w-full space-y-6">
-                
+
                     <div class="widget card p-5">
                         <h4 class="text-lg font-semibold"> About </h4>
                         <ul class="text-gray-600 space-y-3 mt-3">
-                            <li class="flex items-center space-x-2"> 
+                            <li class="flex items-center space-x-2">
                                 <ion-icon name="home-sharp" class="rounded-full bg-gray-200 text-xl p-1 mr-3"></ion-icon>
                                 Live In <strong> Cairo , Eygept  </strong>
                             </li>
-                            <li class="flex items-center space-x-2"> 
+                            <li class="flex items-center space-x-2">
                                 <ion-icon name="globe" class="rounded-full bg-gray-200 text-xl p-1 mr-3"></ion-icon>
                                 From <strong> Aden , Yemen  </strong>
                             </li>
-                            <li class="flex items-center space-x-2"> 
+                            <li class="flex items-center space-x-2">
                                 <ion-icon name="heart-sharp" class="rounded-full bg-gray-200 text-xl p-1 mr-3"></ion-icon>
                                 From <strong> Relationship  </strong>
                             </li>
-                            <li class="flex items-center space-x-2"> 
+                            <li class="flex items-center space-x-2">
                                 <ion-icon name="logo-rss" class="rounded-full bg-gray-200 text-xl p-1 mr-3"></ion-icon>
-                                Followed By <strong> {{ $user->getFriends()->count() }} People </strong>
-                            </li>                                
+                                Followed By <strong> 0  People </strong>
+                            </li>
                         </ul>
                         <div class="gap-3 grid grid-cols-3 mt-4">
                           <img src="{{asset('assets/images/avatars/avatar-lg-2.jpg')}}" alt="" class="object-cover rounded-lg col-span-full">
                           <img src="{{asset('assets/images/avatars/avatar-2.jpg')}}" alt="" class="rounded-lg">
                           <img src="{{asset('assets/images/avatars/avatar-4.jpg')}}" alt="" class="rounded-lg">
-                          <img src="{{asset('assets/images/avatars/avatar-5.jpg')}}" alt="" class="rounded-lg"> 
+                          <img src="{{asset('assets/images/avatars/avatar-5.jpg')}}" alt="" class="rounded-lg">
                       </div>
                       <a href="#" class="button gray mt-3 w-full"> Edit </a>
                     </div>
-                
+
                     <div class="widget card p-5 border-t">
                         <div class="flex items-center justify-between mb-4">
                             <div>
                                 <h4 class="text-lg font-semibold"> Friends </h4>
-                                <p class="text-sm"> {{ $user->getFriends()->count() }} Friends</p>
+                                <p class="text-sm"> 0 Friends</p>
                             </div>
                             <a href="#" class="text-blue-600 ">See all</a>
                         </div>
                         <div class="grid grid-cols-3 gap-3 text-gray-600 font-semibold">
-                            @foreach ($user->getFriends() as $friend)
-                                <a href="{{ Route('timeline', ['username' => urlencode($friend->username)]) }}">  
-                                    <div class="avatar relative rounded-md overflow-hidden w-full h-24 mb-2"> 
+                            {{-- @foreach ($user->getFriends() as $friend)
+                                <a href="{{ Route('timeline', ['username' => urlencode($friend->username)]) }}">
+                                    <div class="avatar relative rounded-md overflow-hidden w-full h-24 mb-2">
                                         <img src="{{asset('assets/images/avatars/avatar-1.jpg')}}" alt="" class="w-full h-full object-cover absolute">
                                     </div>
                                     <div class="text-sm truncate"> {{ $friend->firstname }} {{ $friend->lastname }}</div>
                                 </a>
-                            @endforeach
+                            @endforeach --}}
                         </div>
                       <a href="#" class="button gray mt-3 w-full">  See all </a>
                     </div>
@@ -467,7 +467,7 @@
                             <a href="#" class="text-blue-600 "> See all</a>
                         </div>
                         <div>
-                      
+
                           <div class="flex items-center space-x-4 rounded-md -mx-2 p-2 hover:bg-gray-50">
                               <a href="timeline-group.html" class="w-12 h-12 flex-shrink-0 overflow-hidden rounded-full relative">
                                   <img src="{{asset('assets/images/group/group-3.jpg')}}" class="absolute w-full h-full inset-0 " alt="">
@@ -516,13 +516,13 @@
                                   Join
                               </a>
                           </div>
-                  
+
                         </div>
                     </div>
 
-                </div> 
+                </div>
             </div>
-                  
+
             <!-- Friends  -->
             <div class="card md:p-6 p-2 max-w-3xl mx-auto">
 
@@ -533,7 +533,7 @@
                         <li class="active"><a href="#" class="lg:px-2"> All Friends <span> 3,4510 </span> </a></li>
                         <li><a href="#" class="lg:px-2"> Recently added </a></li>
                         <li><a href="#" class="lg:px-2"> Family </a></li>
-                        <li><a href="#" class="lg:px-2"> University </a></li> 
+                        <li><a href="#" class="lg:px-2"> University </a></li>
                     </ul>
                 </nav>
 
@@ -637,7 +637,7 @@
                     </div>
 
                 </div>
-                     
+
                 <div class="flex justify-center mt-6">
                     <a href="#" class="bg-white font-semibold my-3 px-6 py-2 rounded-full shadow-md dark:bg-gray-800 dark:text-white">
                         Load more ..</a>
@@ -678,7 +678,7 @@
                                 <div class="flex justify-between text-xs">
                                    <a href="#">  Like</a>
                                    <a href="#">  Comment </a>
-                                   <a href="#">  Share </a> 
+                                   <a href="#">  Share </a>
                                 </div>
                             </div>
                         </div>
@@ -693,7 +693,7 @@
                                 <div class="flex justify-between text-xs">
                                    <a href="#">  Like</a>
                                    <a href="#">  Comment </a>
-                                   <a href="#">  Share </a> 
+                                   <a href="#">  Share </a>
                                 </div>
                             </div>
                         </div>
@@ -708,7 +708,7 @@
                                 <div class="flex justify-between text-xs">
                                    <a href="#">  Like</a>
                                    <a href="#">  Comment </a>
-                                   <a href="#">  Share </a> 
+                                   <a href="#">  Share </a>
                                 </div>
                             </div>
                         </div>
@@ -723,7 +723,7 @@
                                 <div class="flex justify-between text-xs">
                                    <a href="#">  Like</a>
                                    <a href="#">  Comment </a>
-                                   <a href="#">  Share </a> 
+                                   <a href="#">  Share </a>
                                 </div>
                             </div>
                         </div>
@@ -738,7 +738,7 @@
                                 <div class="flex justify-between text-xs">
                                    <a href="#">  Like</a>
                                    <a href="#">  Comment </a>
-                                   <a href="#">  Share </a> 
+                                   <a href="#">  Share </a>
                                 </div>
                             </div>
                         </div>
@@ -753,7 +753,7 @@
                                 <div class="flex justify-between text-xs">
                                    <a href="#">  Like</a>
                                    <a href="#">  Comment </a>
-                                   <a href="#">  Share </a> 
+                                   <a href="#">  Share </a>
                                 </div>
                             </div>
                         </div>
@@ -768,7 +768,7 @@
                                 <div class="flex justify-between text-xs">
                                    <a href="#">  Like</a>
                                    <a href="#">  Comment </a>
-                                   <a href="#">  Share </a> 
+                                   <a href="#">  Share </a>
                                 </div>
                             </div>
                         </div>
@@ -783,7 +783,7 @@
                                 <div class="flex justify-between text-xs">
                                    <a href="#">  Like</a>
                                    <a href="#">  Comment </a>
-                                   <a href="#">  Share </a> 
+                                   <a href="#">  Share </a>
                                 </div>
                             </div>
                         </div>
@@ -811,7 +811,7 @@
                 </nav>
 
                 <div class="grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-4 mt-5">
-                    
+
                     <div class="card">
                         <a href="timeline-page.html">
                             <img src="{{asset('assets/images/avatars/avatar-4.jpg')}}" class="h-36 object-cover rounded-t-md shadow-sm w-full">
@@ -824,13 +824,13 @@
                             </button>
                         </div>
                     </div>
-                   
+
                     <div class="card">
                         <a href="timeline-page.html">
                             <img src="{{asset('assets/images/avatars/avatar-3.jpg')}}" class="h-36 object-cover rounded-t-md shadow-sm w-full">
                         </a>
                         <div class="p-3">
-                            <a href="timeline-page.html" class="text-base font-semibold mb-0.5"> 
+                            <a href="timeline-page.html" class="text-base font-semibold mb-0.5">
                                 Alex Dolgove </a>
                             <p class="font-medium text-sm">843K Following </p>
                             <button class="bg-gray-100 w-full flex font-semibold h-8 items-center justify-center mt-3 px-3 rounded-md  text-sm">
@@ -838,7 +838,7 @@
                             </button>
                         </div>
                     </div>
-                    
+
                     <div class="card">
                         <a href="timeline-page.html">
                             <img src="{{asset('assets/images/avatars/avatar-5.jpg')}}" class="h-36 object-cover rounded-t-md shadow-sm w-full">
@@ -899,13 +899,13 @@
                             </button>
                         </div>
                     </div>
-                   
+
                     <div class="card">
                         <a href="timeline-page.html">
                             <img src="{{asset('assets/images/avatars/avatar-3.jpg')}}" class="h-36 object-cover rounded-t-md shadow-sm w-full">
                         </a>
                         <div class="p-3">
-                            <a href="timeline-page.html" class="text-base font-semibold mb-0.5"> 
+                            <a href="timeline-page.html" class="text-base font-semibold mb-0.5">
                                 Alex Dolgove </a>
                             <p class="font-medium text-sm">843K Following </p>
                             <button class="bg-gray-100 w-full flex font-semibold h-8 items-center justify-center mt-3 px-3 rounded-md  text-sm">
@@ -915,12 +915,12 @@
                     </div>
 
                 </div>
-                 
+
                 <div class="flex justify-center mt-6">
                     <a href="#" class="bg-white font-semibold my-3 px-6 py-2 rounded-full shadow-md dark:bg-gray-800 dark:text-white">
                         Load more ..</a>
                 </div>
-                
+
             </div>
 
             <!-- Groups  -->
@@ -933,17 +933,17 @@
                             <ul>
                                 <li class="active"><a href="#"> Joined <span> 230</span> </a></li>
                                 <li><a href="#"> My Groups </a></li>
-                                <li><a href="#"> Discover </a></li> 
+                                <li><a href="#"> Discover </a></li>
                             </ul>
                         </nav>
                     </div>
                     <a href="create-group.html" data-tippy-placement="left" data-tippy="" data-original-title="Create New Album" class="bg-blue-100 font-semibold py-2 px-6 rounded-md text-sm md:mt-0 mt-3 text-blue-600">
-                        Create       
+                        Create
                     </a>
                 </div>
 
-                <div class="grid md:grid-cols-2  grid-cols-2 gap-x-2 gap-y-4 mt-3"> 
-                     
+                <div class="grid md:grid-cols-2  grid-cols-2 gap-x-2 gap-y-4 mt-3">
+
                     <div class="flex items-center flex-col md:flex-row justify-center p-4 rounded-md shadow hover:shadow-md md:space-x-4">
                         <a href="timeline-group.html" iv="" class="w-16 h-16 flex-shrink-0 overflow-hidden rounded-full relative">
                             <img src="{{asset('assets/images/group/group-3.jpg')}}" class="absolute w-full h-full inset-0 " alt="">
@@ -1040,7 +1040,7 @@
                             Following
                         </button>
                     </div>
-                    
+
                 </div>
 
                 <div class="flex justify-center mt-6">
@@ -1051,8 +1051,8 @@
             </div>
 
              <!-- Videos -->
-            <div class="card md:p-6 p-2 max-w-3xl mx-auto">  
-                
+            <div class="card md:p-6 p-2 max-w-3xl mx-auto">
+
                 <h2 class="text-xl font-semibold"> Friend</h2>
                 <nav class="responsive-nav border-b">
                     <ul>
@@ -1062,7 +1062,7 @@
                     </ul>
                 </nav>
 
-                <div class="grid md:grid-cols-3 grid-cols-2  gap-x-2 gap-y-4 mt-3">  
+                <div class="grid md:grid-cols-3 grid-cols-2  gap-x-2 gap-y-4 mt-3">
                     <div>
                         <a href="video-watch.html" class="w-full h-36 overflow-hidden rounded-lg relative block">
                             <img src="{{asset('assets/images/video/img-1.png" alt="" class="w-full h-full absolute inset-0 object-cover">
@@ -1097,7 +1097,7 @@
                             <span class="absolute bg-black bg-opacity-60 bottom-1 font-semibold px-1.5 py-0.5 right-1 rounded text-white text-xs"> 12:21</span>
                             <img src="{{asset('assets/images/icon-play.svg" class="w-12 h-12 uk-position-center" alt="">
                         </a>
-                        
+
                     </div>
                     <div>
                         <a href="video-watch.html" class="w-full h-36 overflow-hidden rounded-lg relative block">
@@ -1133,7 +1133,7 @@
                     <a href="#" class="bg-white font-semibold my-3 px-6 py-2 rounded-full shadow-md dark:bg-gray-800 dark:text-white">
                         Load more ..</a>
                 </div>
-                
+
             </div>
 
 

@@ -16,12 +16,16 @@ class UserController extends Controller
         } else {
             $user = auth()->user();
         }
-        return view('timeline.timeline', compact('user'));
+        return view('timeline.index', compact('user'));
     }
 
 
     public function friends()
     {
-        
+
+    }
+
+    public function edit() {
+        return view('profile.edit');
     }
 }

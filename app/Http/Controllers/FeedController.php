@@ -11,8 +11,10 @@ class FeedController extends Controller
 {
     public function index() {
         $currentUser = auth()->user();
-        $friends = $currentUser->getFriends();
-        return view("feed/feed", compact('friends'));
+        //$friends = $currentUser->getFriends();
+        //return view("feed/feed", compact('friends'));
+
+        return view("feed/feed");
 
     }
 

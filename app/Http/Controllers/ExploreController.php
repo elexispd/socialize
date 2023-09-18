@@ -10,15 +10,11 @@ class ExploreController extends Controller
 {
     public function index() {
         $currentUser = auth()->user();
-        $otherUsers = User::where("username", "!=", $currentUser->username)->take(15)->get();
 
-        $friends = DB::table('friends')
-        ->join('users', 'friends.friend_username', '=', 'users.username')
-        ->where('friends.username', $currentUser->username)
-        ->select('users.*')
-        ->get();
+        $users = User::all()->except($currentUser->id);
 
-        return view('explore.explore', compact('otherUsers', 'friends'));
+        return view('explore.find-friends', compact('users'));
+
     }
 
 }

@@ -63,7 +63,7 @@ class User extends Authenticatable
 
     public function avatar()
     {
-        return $this->hasOne(UserAvatar::class, 'username', 'username');
+        return $this->hasOne(UserAvatar::class, 'id', 'user_id');
     }
 
     public function getAvatar()
@@ -77,18 +77,18 @@ class User extends Authenticatable
         }
     }
 
-    public function getFriends() {
-        $currentUser = $this;
-        $otherUsers = User::where("username", "!=", $currentUser->username)->take(15)->get();
+    // public function getFriends() {
+    //     $currentUser = $this;
+    //     $otherUsers = User::where("username", "!=", $currentUser->username)->take(15)->get();
 
-        $friends = DB::table('friends')
-            ->join('users', 'friends.friend_username', '=', 'users.username')
-            ->where('friends.username', $currentUser->username)
-            ->select('users.*')
-            ->get();
+    //     $friends = DB::table('friends')
+    //         ->join('users', 'friends.friend_username', '=', 'users.username')
+    //         ->where('friends.username', $currentUser->username)
+    //         ->select('users.*')
+    //         ->get();
 
-        return $friends;
-    }
+    //     return $friends;
+    // }
 
 
 

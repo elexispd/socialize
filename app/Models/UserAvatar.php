@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class UserAvatar extends Model
 {
     use HasFactory;
-    protected $table = 'users_avatar';
+    protected $table = 'user_avatars';
 }

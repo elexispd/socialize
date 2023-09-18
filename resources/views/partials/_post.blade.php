@@ -6,8 +6,8 @@
             <a href="#">
                 <img src="{{ auth()->user()->getAvatar() }}" class="bg-gray-200 border border-white rounded-full w-10 h-10">
             </a>
-            <div class="flex-1 font-semibold capitalize">
-                <a href="{{ Route('myTimeline') }}" class="text-black dark:text-gray-100"> 
+            <div class="flex-1 font-semibold">
+                <a href="{{ Route('myTimeline') }}" class="text-black dark:text-gray-100 capitalize">
                     @auth
                         {{ auth()->user()->getFullname() }}
                     @endauth
@@ -17,53 +17,53 @@
         </div>
         <div>
         <a href="#"> <i class="icon-feather-more-horizontal text-2xl hover:bg-gray-200 rounded-full p-2 transition -mr-1 dark:hover:bg-gray-700"></i> </a>
-        <div class="bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden text-base border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700" 
+        <div class="bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden text-base border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700"
         uk-drop="mode: click;pos: bottom-right;animation: uk-animation-slide-bottom-small">
-        
+
             <ul class="space-y-1">
-                <li> 
+                <li>
                     <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
                     <i class="uil-share-alt mr-1"></i> Share
-                    </a> 
+                    </a>
                 </li>
-                <li> 
+                <li>
                     <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
-                    <i class="uil-edit-alt mr-1"></i>  Edit Post 
-                    </a> 
+                    <i class="uil-edit-alt mr-1"></i>  Edit Post
+                    </a>
                 </li>
-                <li> 
+                <li>
                     <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
                     <i class="uil-comment-slash mr-1"></i>   Disable comments
-                    </a> 
-                </li> 
-                <li> 
+                    </a>
+                </li>
+                <li>
                     <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
-                    <i class="uil-favorite mr-1"></i>  Add favorites 
-                    </a> 
+                    <i class="uil-favorite mr-1"></i>  Add favorites
+                    </a>
                 </li>
                 <li>
                 <hr class="-mx-2 my-2 dark:border-gray-800">
                 </li>
-                <li> 
+                <li>
                     <a href="#" class="flex items-center px-3 py-2 text-red-500 hover:bg-red-100 hover:text-red-500 rounded-md dark:hover:bg-red-600">
                     <i class="uil-trash-alt mr-1"></i>  Delete
-                    </a> 
+                    </a>
                 </li>
             </ul>
-        
+
         </div>
         </div>
     </div>
 
     <div uk-lightbox>
-        <a href="images/avatars/avatar-lg-3.jpg">  
+        <a href="images/avatars/avatar-lg-3.jpg">
             <img src="images/avatars/avatar-lg-4.jpg" alt="" class="max-h-96 w-full object-cover">
         </a>
     </div>
-    
 
-    <div class="p-4 space-y-3"> 
-        
+
+    <div class="p-4 space-y-3">
+
         <div class="flex space-x-4 lg:font-bold">
             <a href="#" class="flex items-center space-x-2">
                 <div class="p-2 rounded-full  text-black lg:bg-gray-100 dark:bg-gray-600">
@@ -90,7 +90,7 @@
                 <div> Share</div>
             </a>
         </div>
-        <div class="flex items-center space-x-3 pt-2"> 
+        <div class="flex items-center space-x-3 pt-2">
             <div class="flex items-center">
                 <img src="images/avatars/avatar-1.jpg" alt="" class="w-6 h-6 rounded-full border-2 border-white dark:border-gray-900">
                 <img src="images/avatars/avatar-4.jpg" alt="" class="w-6 h-6 rounded-full border-2 border-white dark:border-gray-900 -ml-2">
@@ -135,9 +135,9 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
-        
+
         <a href="#" class="hover:text-blue-600 hover:underline">  Veiw 8 more Comments </a>
 
         <div class="bg-gray-100 rounded-full relative dark:bg-gray-800 border-t">
@@ -151,7 +151,7 @@
                 </a>
                 <a href="#">
                     <ion-icon name="link-outline" class="hover:bg-gray-200 p-1.5 rounded-full"></ion-icon>
-                </a> 
+                </a>
             </div>
         </div>
 
