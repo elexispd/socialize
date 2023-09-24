@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Models\Friendship;
 
 class User extends Authenticatable
 {
@@ -75,6 +76,17 @@ class User extends Authenticatable
         } else {
             return asset('useravatar/default.jpg');
         }
+    }
+    // ...
+
+    public function friends()
+    {
+        return $this->belongsToMany(User::class, 'friendship', 'user_id', 'friend_id');
+    }
+
+    public function friendsWith()
+    {
+        return $this->belongsToMany(User::class, 'friendship', 'friend_id', 'user_id');
     }
 
     // public function getFriends() {

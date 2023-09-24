@@ -14,7 +14,7 @@
                         <div class="uk-slider-container px-1 py-3">
                             <ul class="uk-slider-items uk-child-width-1-3@m uk-child-width-1-3@s uk-child-width-1-2 uk-grid-small uk-grid">
 
-                              @foreach ($users as $user)
+                              @foreach ($usersNotFriendsWithLoggedInUser as $user)
                                 <li>
                                     <a href="{{ Route('find-friends') }}" class="uk-link-reset">
                                         <div class="card">
@@ -45,6 +45,7 @@
                            <h2 class="text-xl font-semibold"> Your Friends also following</h2>
 
                        </div>
+
                        <a href="#" class="text-blue-500"> See all </a>
                     </div>
 

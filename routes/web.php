@@ -33,7 +33,7 @@ Route::group(["middleware" => "auth"], function() {
     Route::get('/timeline', [App\Http\Controllers\UserController::class, 'timeline'])->name("myTimeline");
     Route::get('/timeline/{username}', [App\Http\Controllers\UserController::class, 'timeline'])->name("timeline");
     Route::get('/chat', [App\Http\Controllers\MessageController::class, 'index'])->name("messages");
-    Route::get('/explore', [App\Http\Controllers\ExploreController::class, 'index'])->name("find-friends");
+    Route::get('/explore', [App\Http\Controllers\FriendController::class, 'explore'])->name("find-friends");
     Route::get('/profile/edit', [App\Http\Controllers\UserController::class, 'edit'])->name("edit_profile");
 });
 
