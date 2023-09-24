@@ -17,8 +17,9 @@ class FriendController extends Controller
 
         $usersNotFriendsWithLoggedInUser = $this->notFriends($loggedInUser);
         $friendsOfFriends = $this->friendsYouMayKnow($loggedInUser);
+        $requests = auth()->user()->friendRequest;
 
-        return view('explore.find-friends', compact('usersNotFriendsWithLoggedInUser', 'friendsOfFriends'));
+        return view('explore.find-friends', compact('usersNotFriendsWithLoggedInUser', 'friendsOfFriends', 'requests'));
     }
 
     function notFriends($loggedInUser) {
@@ -28,6 +29,7 @@ class FriendController extends Controller
             ->get();
         return $usersNotFriendsWithLoggedInUser;
     }
+
 
     function friendsYouMayKnow($loggedInUser) {
         // Get the IDs of the logged-in user's friends from both scenarios

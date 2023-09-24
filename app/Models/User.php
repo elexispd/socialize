@@ -81,27 +81,31 @@ class User extends Authenticatable
 
     public function friends()
     {
-        return $this->belongsToMany(User::class, 'friendship', 'user_id', 'friend_id');
+        return $this->belongsToMany(User::class, 'friendship', 'user_id', 'friend_id')
+        ->wherePivot('status', 1);
     }
+
 
     public function friendsWith()
     {
-        return $this->belongsToMany(User::class, 'friendship', 'friend_id', 'user_id');
+        return $this->belongsToMany(User::class, 'friendship', 'friend_id', 'user_id')
+        ->wherePivot('status', 1);
     }
 
-    // public function getFriends() {
-    //     $currentUser = $this;
-    //     $otherUsers = User::where("username", "!=", $currentUser->username)->take(15)->get();
+    public function getfriends()
+    {
+        return $this->belongsToMany(User::class, 'friendship', 'user_id', 'friend_id')
+            ->orWhere(function ($query) {
+                $query->where('friendship.friend_id', $this->id)
+                      ->where('friendship.status', 1);
+            })
+            ->wherePivot('status', 1);
+    }
 
-    //     $friends = DB::table('friends')
-    //         ->join('users', 'friends.friend_username', '=', 'users.username')
-    //         ->where('friends.username', $currentUser->username)
-    //         ->select('users.*')
-    //         ->get();
-
-    //     return $friends;
-    // }
-
+    public function friendRequest()  {
+        return $this->belongsToMany(User::class, 'friendship', 'friend_id', 'user_id')
+               ->wherePivot("status", 0);
+    }
 
 
 

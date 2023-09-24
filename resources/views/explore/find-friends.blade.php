@@ -16,7 +16,7 @@
 
                               @foreach ($usersNotFriendsWithLoggedInUser as $user)
                                 <li>
-                                    <a href="{{ Route('find-friends') }}" class="uk-link-reset">
+                                    <a href="{{ Route('timeline', $user->username) }}" class="uk-link-reset">
                                         <div class="card">
                                             <img src="{{ asset('useravatar/default.jpg') }}" class="h-44 object-cover rounded-t-md shadow-sm w-full">
                                             <div class="p-4">
@@ -42,20 +42,22 @@
 
                     <div class="my-2 flex items-center justify-between pb-3">
                        <div>
-                           <h2 class="text-xl font-semibold"> Your Friends also following</h2>
+                           <h2 class="text-xl font-semibold"> People You May Know</h2>
 
                        </div>
 
-                       <a href="#" class="text-blue-500"> See all </a>
                     </div>
 
-                    <div class="relative" uk-slider="finite: true">
+                    @if ($friendsOfFriends->isEmpty())
+                    <p class="text-center text-gray-500">You have no friend suggestion</p>
+                    @else
+                        <div class="relative" uk-slider="finite: true">
                         <div class="uk-slider-container px-1 py-3">
                             <ul class="uk-slider-items uk-child-width-1-3@m uk-child-width-1-3@s uk-child-width-1-2 uk-grid-small uk-grid">
 
                                 @foreach ($friendsOfFriends as $friendOfFriends)
                                     <li>
-                                        <a href="#">
+                                        <a href="{{ Route('timeline', $friendOfFriends->username) }}">
                                             <div class="card">
                                                 <img src="{{ asset('useravatar/default.jpg') }}" class="h-44 object-cover rounded-t-md shadow-sm w-full">
                                                 <div class="p-4">
@@ -75,9 +77,8 @@
                                 href="#" uk-slider-item="next"> <i class="icon-feather-chevron-right"></i></a>
 
                         </div>
-                    </div>
-
-
+                        </div>
+                    @endif
                 </div>
 
                 <!-- Sidebar -->
@@ -89,156 +90,49 @@
                             <div>
                                 <h5 class="text-lg font-semibold">Friend Requests</h2>
                             </div>
-                            <a href="#" class="text-blue-500"> See all </a>
+
                         </div>
 
                         <div class="p-4 -mt-1.5">
 
-                            <div class="flex items-center space-x-4 rounded-md -mx-2 p-2 hover:bg-gray-50">
-                                <a href="#" href="#"iv class="w-12 h-12 flex-shrink-0 overflow-hidden rounded-full relative">
-                                    <img src="assets/images/avatars/avatar-1.jpg" class="absolute w-full h-full inset-0 " alt="">
-                                </a>
-                                <div class="flex-1">
-                                    <a href="#" class="text-base font-semibold capitalize"> Stella Johnson </a>
-                                </div>
-                                <ul>
-                                    <li>
-                                        <a href="#"
-                                            class="flex items-center justify-center h-8 px-3 rounded-md text-sm border font-semibold">
-                                            Accept
+                            @if ($requests->isEmpty())
+                                <p class="text-center text-gray-500">You have no friend requests</p>
+                            @else
+                                    @foreach ($requests as $request)
+                                    <div class="flex items-center space-x-4 rounded-md -mx-2 p-2 hover:bg-gray-50">
+                                        <a href="#" class="w-12 h-12 flex-shrink-0 overflow-hidden rounded-full relative">
+                                            <img src="{{ asset('useravatar/default.jpg') }} " class="absolute w-full h-full inset-0" alt="">
                                         </a>
-                                    </li>
-                                    <li class="mt-2">
-                                        <a href="#"
-                                            class="flex items-center justify-center h-8 px-3 rounded-md text-sm border font-semibold">
-                                            Decline
-                                        </a>
-                                    </li>
+                                        <div class="flex-1">
+                                            <a href="#" class="text-base font-semibold capitalize"> {{ $request->firstname }}  {{ $request->lastname }} </a>
+                                        </div>
+                                        <ul>
+                                            <li>
+                                                <a href="#"
+                                                    class="flex items-center justify-center h-8 px-3 rounded-md text-sm border font-semibold">
+                                                    Accept
+                                                </a>
+                                            </li>
+                                            <li class="mt-2">
+                                                <a href="#"
+                                                    class="flex items-center justify-center h-8 px-3 rounded-md text-sm border font-semibold">
+                                                    Decline
+                                                </a>
+                                            </li>
 
-                                </ul>
-                            </div>
-                            <div class="flex items-center space-x-4 rounded-md -mx-2 p-2 hover:bg-gray-50">
-                                <a href="#" class="w-12 h-12 flex-shrink-0 overflow-hidden rounded-full relative">
-                                    <img src="assets/images/avatars/avatar-2.jpg" class="absolute w-full h-full inset-0 " alt="">
-                                </a>
-                                <div class="flex-1">
-                                    <a href="#" class="text-base font-semibold capitalize"> Alex Dolgove </a>
-                                </div>
-                                <ul>
-                                    <li>
-                                        <a href="#"
-                                            class="flex items-center justify-center h-8 px-3 rounded-md text-sm border font-semibold">
-                                            Accept
-                                        </a>
-                                    </li>
-                                    <li class="mt-2">
-                                        <a href="#"
-                                            class="flex items-center justify-center h-8 px-3 rounded-md text-sm border font-semibold">
-                                            Decline
-                                        </a>
-                                    </li>
-
-                                </ul>
-                            </div>
-                            <div class="flex items-center space-x-4 rounded-md -mx-2 p-2 hover:bg-gray-50">
-                                <a href="#" class="w-12 h-12 flex-shrink-0 overflow-hidden rounded-full relative">
-                                    <img src="assets/images/avatars/avatar-3.jpg" class="absolute w-full h-full inset-0" alt="">
-                                </a>
-                                <div class="flex-1">
-                                    <a href="#" class="text-base font-semibold capitalize"> John Michael </a>
-                                </div>
-                                <ul>
-                                    <li>
-                                        <a href="#"
-                                            class="flex items-center justify-center h-8 px-3 rounded-md text-sm border font-semibold">
-                                            Accept
-                                        </a>
-                                    </li>
-                                    <li class="mt-2">
-                                        <a href="#"
-                                            class="flex items-center justify-center h-8 px-3 rounded-md text-sm border font-semibold">
-                                            Decline
-                                        </a>
-                                    </li>
-
-                                </ul>
-                            </div>
-                            <div class="flex items-center space-x-4 rounded-md -mx-2 p-2 hover:bg-gray-50">
-                                <a href="#" class="w-12 h-12 flex-shrink-0 overflow-hidden rounded-full relative">
-                                    <img src="assets/images/avatars/avatar-4.jpg" class="absolute w-full h-full inset-0" alt="">
-                                </a>
-                                <div class="flex-1">
-                                    <a href="#" class="text-base font-semibold capitalize"> Dennis Han </a>
-                                </div>
-                                <ul>
-                                    <li>
-                                        <a href="#"
-                                            class="flex items-center justify-center h-8 px-3 rounded-md text-sm border font-semibold">
-                                            Accept
-                                        </a>
-                                    </li>
-                                    <li class="mt-2">
-                                        <a href="#"
-                                            class="flex items-center justify-center h-8 px-3 rounded-md text-sm border font-semibold">
-                                            Decline
-                                        </a>
-                                    </li>
-
-                                </ul>
-                            </div>
-                            <div class="flex items-center space-x-4 rounded-md -mx-2 p-2 hover:bg-gray-50">
-                                <a href="#" class="w-12 h-12 flex-shrink-0 overflow-hidden rounded-full relative">
-                                    <img src="assets/images/avatars/avatar-5.jpg" class="absolute w-full h-full inset-0" alt="">
-                                </a>
-                                <div class="flex-1">
-                                    <a href="#" class="text-base font-semibold capitalize"> Martin Gray </a>
-                                </div>
-                                <ul>
-                                    <li>
-                                        <a href="#"
-                                            class="flex items-center justify-center h-8 px-3 rounded-md text-sm border font-semibold">
-                                            Accept
-                                        </a>
-                                    </li>
-                                    <li class="mt-2">
-                                        <a href="#"
-                                            class="flex items-center justify-center h-8 px-3 rounded-md text-sm border font-semibold">
-                                            Decline
-                                        </a>
-                                    </li>
-
-                                </ul>
-                            </div>
-                            <div class="flex items-center space-x-4 rounded-md -mx-2 p-2 hover:bg-gray-50">
-                                <a href="#" class="w-12 h-12 flex-shrink-0 overflow-hidden rounded-full relative">
-                                    <img src="assets/images/avatars/avatar-6.jpg" class="absolute w-full h-full inset-0" alt="">
-                                </a>
-                                <div class="flex-1">
-                                    <a href="#" class="text-base  font-semibold capitalize"> Erica Jones </a>
-                                </div>
-
-                                <ul>
-                                    <li>
-                                        <a href="#"
-                                            class="flex items-center justify-center h-8 px-3 rounded-md text-sm border font-semibold">
-                                            Accept
-                                        </a>
-                                    </li>
-                                    <li class="mt-2">
-                                        <a href="#"
-                                            class="flex items-center justify-center h-8 px-3 rounded-md text-sm border font-semibold">
-                                            Decline
-                                        </a>
-                                    </li>
-
-                                </ul>
+                                        </ul>
+                                    </div>
+                                @endforeach
+                                <a href="#" class="block text-center pb-4 font-medium text-blue-500"> See all </a>
+                            @endif
 
 
-                            </div>
+
+
 
                         </div>
 
-                        <a href="#" class="block text-center pb-4 font-medium text-blue-500"> See all </a>
+
 
                     </div>
                 </div>
