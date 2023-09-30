@@ -32,7 +32,7 @@
 
                 <div class="profile_info text-center">
                     <h1> {{ $user->getFullname() }} </h1>
-                    <p> Family , Food , Fashion , Fourever <a href="#">Edit </a></p>
+                    <p> Family , Food , Fashion , Fourever </p>
                 </div>
 
             </div>
@@ -41,15 +41,14 @@
                 <nav class="responsive-nav pl-3">
                     <ul  uk-switcher="connect: #timeline-tab; animation: uk-animation-fade">
                         <li><a href="#">Timeline</a></li>
-                        <li><a href="#">Friend <span> 0 </span> </a></li>
-                        <li><a href="#">Photoes </a></li>
-                        <li><a href="#">Pages</a></li>
-                        <li><a href="#">Groups</a></li>
-                        <li><a href="#">Videos</a></li>
+                        <li><a href="#">Friend <span> {{ count($friends) }}  </span> </a></li>
+                        <li><a href="#">Photos </a></li>
+                        <li><a href="#">Profile</a></li>
                     </ul>
                 </nav>
 
-                <!-- button actions -->
+
+                     <!-- button actions -->
                 <div class="flex items-center space-x-1.5 flex-shrink-0 pr-4 mb-2 justify-center order-1 relative">
 
                     <!-- add story -->
@@ -109,7 +108,9 @@
                             </li>
                           </ul>
                     </div>
-                </div>
+                    </div>
+
+
 
             </div>
 
@@ -442,7 +443,7 @@
                         <div class="flex items-center justify-between mb-4">
                             <div>
                                 <h4 class="text-lg font-semibold"> Friends </h4>
-                                <p class="text-sm"> 0 Friends</p>
+                                <p class="text-sm"> {{ count($friends) }} Friends</p>
                             </div>
                             <a href="#" class="text-blue-600 ">See all</a>
                         </div>
@@ -654,17 +655,9 @@
                         <nav class="responsive-nav style-2 md:m-0 -mx-4">
                             <ul>
                                 <li class="active"><a href="#">  Photos of you  <span> 230</span> </a></li>
-                                <li><a href="#"> Recently added </a></li>
-                                <li><a href="#"> Family </a></li>
-                                <li><a href="#"> University </a></li>
-                                <li><a href="#"> Albums </a></li>
                             </ul>
                         </nav>
                     </div>
-                    <a href="#offcanvas-create" uk-toggle class="flex items-center justify-center z-10 h-10 w-10 rounded-full bg-blue-600 text-white absolute right-0"
-                    data-tippy-placement="left" title="Create New Album">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
-                    </a>
                 </div>
 
                 <div class="grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-3 mt-5">
@@ -800,339 +793,37 @@
             <!-- Pages  -->
             <div class="card md:p-6 p-2 max-w-3xl mx-auto">
 
-                <h2 class="text-xl font-bold"> Pages</h2>
-                <nav class="responsive-nav border-b md:m-0 -mx-4">
-                    <ul>
-                        <li class="active"><a href="#" class="lg:px-2"> Following </a></li>
-                        <li><a href="#" class="lg:px-2"> Newest </a></li>
-                        <li><a href="#" class="lg:px-2"> My pages</a></li>
-                        <li><a href="#" class="lg:px-2"> Suggestions</a></li>
-                    </ul>
-                </nav>
+                <div class="mt-5">
 
-                <div class="grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-4 mt-5">
-
-                    <div class="card">
-                        <a href="timeline-page.html">
-                            <img src="{{asset('assets/images/avatars/avatar-4.jpg')}}" class="h-36 object-cover rounded-t-md shadow-sm w-full">
-                        </a>
-                        <div class="p-3">
-                            <a href="timeline-page.html" class="text-base font-semibold mb-0.5"> John Michael  </a>
-                            <p class="font-medium text-sm">843K Following </p>
-                            <button class="bg-gray-100 w-full flex font-semibold h-8 items-center justify-center mt-3 px-3 rounded-md  text-sm">
-                                Following
-                            </button>
-                        </div>
+                    {{-- details of user here --}}
+                    <div class="flex justify-between mt-5">
+                        <div><strong>Education: </strong></div>
+                        <div>*************</div>
                     </div>
 
-                    <div class="card">
-                        <a href="timeline-page.html">
-                            <img src="{{asset('assets/images/avatars/avatar-3.jpg')}}" class="h-36 object-cover rounded-t-md shadow-sm w-full">
-                        </a>
-                        <div class="p-3">
-                            <a href="timeline-page.html" class="text-base font-semibold mb-0.5">
-                                Alex Dolgove </a>
-                            <p class="font-medium text-sm">843K Following </p>
-                            <button class="bg-gray-100 w-full flex font-semibold h-8 items-center justify-center mt-3 px-3 rounded-md  text-sm">
-                                Following
-                            </button>
-                        </div>
+                    <div class="flex justify-between mt-5">
+                        <div><strong>Date Of Birth: </strong></div>
+                        <div>*************</div>
                     </div>
 
-                    <div class="card">
-                        <a href="timeline-page.html">
-                            <img src="{{asset('assets/images/avatars/avatar-5.jpg')}}" class="h-36 object-cover rounded-t-md shadow-sm w-full">
-                        </a>
-                        <div class="p-3">
-                            <a href="timeline-page.html" class="text-base font-semibold mb-0.5"> Dennis Han  </a>
-                            <p class="font-medium text-sm">843K Following </p>
-                            <button class="bg-gray-100 w-full flex font-semibold h-8 items-center justify-center mt-3 px-3 rounded-md  text-sm">
-                                Following
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <a href="timeline-page.html">
-                            <img src="{{asset('assets/images/avatars/avatar-7.jpg')}}" class="h-36 object-cover rounded-t-md shadow-sm w-full">
-                        </a>
-                        <div class="p-3">
-                            <a href="timeline-page.html" class="text-base font-semibold mb-0.5">  Monroe Parker   </a>
-                            <p class="font-medium text-sm">843K Following </p>
-                            <button class="bg-gray-100 w-full flex font-semibold h-8 items-center justify-center mt-3 px-3 rounded-md  text-sm">
-                                Following
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <a href="timeline-page.html">
-                            <img src="{{asset('assets/images/avatars/avatar-6.jpg')}}" class="h-36 object-cover rounded-t-md shadow-sm w-full">
-                        </a>
-                        <div class="p-3">
-                            <a href="timeline-page.html" class="text-base font-semibold mb-0.5"> Erica Jones </a>
-                            <p class="font-medium text-sm">843K Following </p>
-                            <button class="bg-gray-100 w-full flex font-semibold h-8 items-center justify-center mt-3 px-3 rounded-md  text-sm">
-                                Following
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <a href="timeline-page.html">
-                            <img src="{{asset('assets/images/avatars/avatar-2.jpg')}}" class="h-36 object-cover rounded-t-md shadow-sm w-full">
-                        </a>
-                        <div class="p-3">
-                            <a href="timeline-page.html" class="text-base font-semibold mb-0.5">  Stella Johnson</a>
-                            <p class="font-medium text-sm">843K Following </p>
-                            <button class="bg-gray-100 w-full flex font-semibold h-8 items-center justify-center mt-3 px-3 rounded-md  text-sm">
-                                Following
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <a href="timeline-page.html">
-                            <img src="{{asset('assets/images/avatars/avatar-4.jpg')}}" class="h-36 object-cover rounded-t-md shadow-sm w-full">
-                        </a>
-                        <div class="p-3">
-                            <a href="timeline-page.html" class="text-base font-semibold mb-0.5"> John Michael  </a>
-                            <p class="font-medium text-sm">843K Following </p>
-                            <button class="bg-gray-100 w-full flex font-semibold h-8 items-center justify-center mt-3 px-3 rounded-md  text-sm">
-                                Following
-                            </button>
-                        </div>
+                    <div class="flex justify-between mt-5">
+                        <div><strong>Gender: </strong></div>
+                        <div>*************</div>
                     </div>
 
-                    <div class="card">
-                        <a href="timeline-page.html">
-                            <img src="{{asset('assets/images/avatars/avatar-3.jpg')}}" class="h-36 object-cover rounded-t-md shadow-sm w-full">
-                        </a>
-                        <div class="p-3">
-                            <a href="timeline-page.html" class="text-base font-semibold mb-0.5">
-                                Alex Dolgove </a>
-                            <p class="font-medium text-sm">843K Following </p>
-                            <button class="bg-gray-100 w-full flex font-semibold h-8 items-center justify-center mt-3 px-3 rounded-md  text-sm">
-                                Following
-                            </button>
-                        </div>
+                    <div class="flex justify-between mt-5">
+                        <div><strong>Email: </strong></div>
+                        <div>*************</div>
                     </div>
+
+                    <div class="flex justify-between mt-5">
+                        <div><strong>Relationship: </strong></div>
+                        <div>*************</div>
+                    </div>
+
 
                 </div>
 
-                <div class="flex justify-center mt-6">
-                    <a href="#" class="bg-white font-semibold my-3 px-6 py-2 rounded-full shadow-md dark:bg-gray-800 dark:text-white">
-                        Load more ..</a>
-                </div>
-
-            </div>
-
-            <!-- Groups  -->
-            <div class="card md:p-6 p-2 max-w-3xl mx-auto">
-
-                <div class="flex justify-between items-start relative md:mb-4 mb-3">
-                    <div class="flex-1">
-                        <h2 class="text-xl font-bold"> Groups </h2>
-                        <nav class="responsive-nav style-2 md:m-0 -mx-4">
-                            <ul>
-                                <li class="active"><a href="#"> Joined <span> 230</span> </a></li>
-                                <li><a href="#"> My Groups </a></li>
-                                <li><a href="#"> Discover </a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <a href="create-group.html" data-tippy-placement="left" data-tippy="" data-original-title="Create New Album" class="bg-blue-100 font-semibold py-2 px-6 rounded-md text-sm md:mt-0 mt-3 text-blue-600">
-                        Create
-                    </a>
-                </div>
-
-                <div class="grid md:grid-cols-2  grid-cols-2 gap-x-2 gap-y-4 mt-3">
-
-                    <div class="flex items-center flex-col md:flex-row justify-center p-4 rounded-md shadow hover:shadow-md md:space-x-4">
-                        <a href="timeline-group.html" iv="" class="w-16 h-16 flex-shrink-0 overflow-hidden rounded-full relative">
-                            <img src="{{asset('assets/images/group/group-3.jpg')}}" class="absolute w-full h-full inset-0 " alt="">
-                        </a>
-                        <div class="flex-1">
-                            <a href="timeline-page.html" class="text-base font-semibold capitalize">Graphic Design </a>
-                            <div class="text-sm text-gray-500"> 54 mutual friends </div>
-                        </div>
-                        <button class="bg-gray-100 font-semibold py-2 px-3 rounded-md text-sm md:mt-0 mt-3">
-                            Following
-                        </button>
-                    </div>
-                    <div class="flex items-center flex-col md:flex-row justify-center p-4 rounded-md shadow hover:shadow-md md:space-x-4">
-                        <a href="timeline-group.html" iv="" class="w-16 h-16 flex-shrink-0 overflow-hidden rounded-full relative">
-                            <img src="{{asset('assets/images/group/group-4.jpg')}}" class="absolute w-full h-full inset-0 " alt="">
-                        </a>
-                        <div class="flex-1">
-                            <a href="timeline-page.html" class="text-base font-semibold capitalize"> Mountain Riders  </a>
-                            <div class="text-sm text-gray-500"> 54 mutual friends </div>
-                        </div>
-                        <button class="bg-gray-100 font-semibold py-2 px-3 rounded-md text-sm md:mt-0 mt-3">
-                            Following
-                        </button>
-                    </div>
-                    <div class="flex items-center flex-col md:flex-row justify-center p-4 rounded-md shadow hover:shadow-md md:space-x-4">
-                        <a href="timeline-group.html" iv="" class="w-16 h-16 flex-shrink-0 overflow-hidden rounded-full relative">
-                            <img src="{{asset('assets/images/group/group-2.jpg')}}" class="absolute w-full h-full inset-0 " alt="">
-                        </a>
-                        <div class="flex-1">
-                            <a href="timeline-page.html" class="text-base font-semibold capitalize">  Coffee Addicts  </a>
-                            <div class="text-sm text-gray-500"> 54 mutual friends </div>
-                        </div>
-                        <button class="bg-gray-100 font-semibold py-2 px-3 rounded-md text-sm md:mt-0 mt-3">
-                            Following
-                        </button>
-                    </div>
-                    <div class="flex items-center flex-col md:flex-row justify-center p-4 rounded-md shadow hover:shadow-md md:space-x-4">
-                        <a href="timeline-group.html" iv="" class="w-16 h-16 flex-shrink-0 overflow-hidden rounded-full relative">
-                            <img src="{{asset('assets/images/group/group-5.jpg')}}" class="absolute w-full h-full inset-0 " alt="">
-                        </a>
-                        <div class="flex-1">
-                            <a href="timeline-page.html" class="text-base font-semibold capitalize">  Property Rent  </a>
-                            <div class="text-sm text-gray-500"> 54 mutual friends </div>
-                        </div>
-                        <button class="bg-gray-100 font-semibold py-2 px-3 rounded-md text-sm md:mt-0 mt-3">
-                            Following
-                        </button>
-                    </div>
-                    <div class="flex items-center flex-col md:flex-row justify-center p-4 rounded-md shadow hover:shadow-md md:space-x-4">
-                        <a href="timeline-group.html" iv="" class="w-16 h-16 flex-shrink-0 overflow-hidden rounded-full relative">
-                            <img src="{{asset('assets/images/group/group-1.jpg')}}" class="absolute w-full h-full inset-0 " alt="">
-                        </a>
-                        <div class="flex-1">
-                            <a href="timeline-page.html" class="text-base font-semibold capitalize"> Architecture </a>
-                            <div class="text-sm text-gray-500"> 54 mutual friends </div>
-                        </div>
-                        <button class="bg-gray-100 font-semibold py-2 px-3 rounded-md text-sm md:mt-0 mt-3">
-                            Following
-                        </button>
-                    </div>
-                    <div class="flex items-center flex-col md:flex-row justify-center p-4 rounded-md shadow hover:shadow-md md:space-x-4">
-                        <a href="timeline-group.html" iv="" class="w-16 h-16 flex-shrink-0 overflow-hidden rounded-full relative">
-                            <img src="{{asset('assets/images/group/group-3.jpg')}}" class="absolute w-full h-full inset-0 " alt="">
-                        </a>
-                        <div class="flex-1">
-                            <a href="timeline-page.html" class="text-base font-semibold capitalize">Graphic Design </a>
-                            <div class="text-sm text-gray-500"> 54 mutual friends </div>
-                        </div>
-                        <button class="bg-gray-100 font-semibold py-2 px-3 rounded-md text-sm md:mt-0 mt-3">
-                            Following
-                        </button>
-                    </div>
-                    <div class="flex items-center flex-col md:flex-row justify-center p-4 rounded-md shadow hover:shadow-md md:space-x-4">
-                        <a href="timeline-group.html" iv="" class="w-16 h-16 flex-shrink-0 overflow-hidden rounded-full relative">
-                            <img src="{{asset('assets/images/group/group-4.jpg')}}" class="absolute w-full h-full inset-0 " alt="">
-                        </a>
-                        <div class="flex-1">
-                            <a href="timeline-page.html" class="text-base font-semibold capitalize"> Mountain Riders  </a>
-                            <div class="text-sm text-gray-500"> 54 mutual friends </div>
-                        </div>
-                        <button class="bg-gray-100 font-semibold py-2 px-3 rounded-md text-sm md:mt-0 mt-3">
-                            Following
-                        </button>
-                    </div>
-                    <div class="flex items-center flex-col md:flex-row justify-center p-4 rounded-md shadow hover:shadow-md md:space-x-4">
-                        <a href="timeline-group.html" iv="" class="w-16 h-16 flex-shrink-0 overflow-hidden rounded-full relative">
-                            <img src="{{asset('assets/images/group/group-2.jpg')}}" class="absolute w-full h-full inset-0 " alt="">
-                        </a>
-                        <div class="flex-1">
-                            <a href="timeline-page.html" class="text-base font-semibold capitalize">  Coffee Addicts  </a>
-                            <div class="text-sm text-gray-500"> 54 mutual friends </div>
-                        </div>
-                        <button class="bg-gray-100 font-semibold py-2 px-3 rounded-md text-sm md:mt-0 mt-3">
-                            Following
-                        </button>
-                    </div>
-
-                </div>
-
-                <div class="flex justify-center mt-6">
-                    <a href="#" class="bg-white dark:bg-gray-900 font-semibold my-3 px-6 py-2 rounded-full shadow-md dark:bg-gray-800 dark:text-white">
-                        Load more ..</a>
-                </div>
-
-            </div>
-
-             <!-- Videos -->
-            <div class="card md:p-6 p-2 max-w-3xl mx-auto">
-
-                <h2 class="text-xl font-semibold"> Friend</h2>
-                <nav class="responsive-nav border-b">
-                    <ul>
-                        <li class="active"><a href="#" class="lg:px-2">   Suggestions </a></li>
-                        <li><a href="#" class="lg:px-2"> Newest </a></li>
-                        <li><a href="#" class="lg:px-2"> My Videos </a></li>
-                    </ul>
-                </nav>
-
-                <div class="grid md:grid-cols-3 grid-cols-2  gap-x-2 gap-y-4 mt-3">
-                    <div>
-                        <a href="video-watch.html" class="w-full h-36 overflow-hidden rounded-lg relative block">
-                            <img src="{{asset('assets/images/video/img-1.png" alt="" class="w-full h-full absolute inset-0 object-cover">
-                            <span class="absolute bg-black bg-opacity-60 bottom-1 font-semibold px-1.5 py-0.5 right-1 rounded text-white text-xs"> 12:21</span>
-                            <img src="{{asset('assets/images/icon-play.svg" class="w-12 h-12 uk-position-center" alt="">
-                        </a>
-                    </div>
-                    <div>
-                        <a href="video-watch.html" class="w-full h-36 overflow-hidden rounded-lg relative block">
-                            <img src="{{asset('assets/images/video/img-2.png" alt="" class="w-full h-full absolute inset-0 object-cover">
-                            <span class="absolute bg-black bg-opacity-60 bottom-1 font-semibold px-1.5 py-0.5 right-1 rounded text-white text-xs"> 12:21</span>
-                            <img src="{{asset('assets/images/icon-play.svg" class="w-12 h-12 uk-position-center" alt="">
-                        </a>
-                    </div>
-                    <div>
-                        <a href="video-watch.html" class="w-full h-36 overflow-hidden rounded-lg relative block">
-                            <img src="{{asset('assets/images/video/img-3.png" alt="" class="w-full h-full absolute inset-0 object-cover">
-                            <span class="absolute bg-black bg-opacity-60 bottom-1 font-semibold px-1.5 py-0.5 right-1 rounded text-white text-xs"> 12:21</span>
-                            <img src="{{asset('assets/images/icon-play.svg" class="w-12 h-12 uk-position-center" alt="">
-                        </a>
-                    </div>
-                    <div>
-                        <a href="video-watch.html" class="w-full h-36 overflow-hidden rounded-lg relative block">
-                            <img src="{{asset('assets/images/video/img-4.png" alt="" class="w-full h-full absolute inset-0 object-cover">
-                            <span class="absolute bg-black bg-opacity-60 bottom-1 font-semibold px-1.5 py-0.5 right-1 rounded text-white text-xs"> 12:21</span>
-                            <img src="{{asset('assets/images/icon-play.svg" class="w-12 h-12 uk-position-center" alt="">
-                        </a>
-                    </div>
-                    <div>
-                        <a href="video-watch.html" class="w-full h-36 overflow-hidden rounded-lg relative block">
-                            <img src="{{asset('assets/images/video/img-5.png" alt="" class="w-full h-full absolute inset-0 object-cover">
-                            <span class="absolute bg-black bg-opacity-60 bottom-1 font-semibold px-1.5 py-0.5 right-1 rounded text-white text-xs"> 12:21</span>
-                            <img src="{{asset('assets/images/icon-play.svg" class="w-12 h-12 uk-position-center" alt="">
-                        </a>
-
-                    </div>
-                    <div>
-                        <a href="video-watch.html" class="w-full h-36 overflow-hidden rounded-lg relative block">
-                            <img src="{{asset('assets/images/video/img-6.png" alt="" class="w-full h-full absolute inset-0 object-cover">
-                            <span class="absolute bg-black bg-opacity-60 bottom-1 font-semibold px-1.5 py-0.5 right-1 rounded text-white text-xs"> 12:21</span>
-                            <img src="{{asset('assets/images/icon-play.svg" class="w-12 h-12 uk-position-center" alt="">
-                        </a>
-                    </div>
-                    <div>
-                        <a href="video-watch.html" class="w-full h-36 overflow-hidden rounded-lg relative block">
-                            <img src="{{asset('assets/images/video/img-3.png" alt="" class="w-full h-full absolute inset-0 object-cover">
-                            <span class="absolute bg-black bg-opacity-60 bottom-1 font-semibold px-1.5 py-0.5 right-1 rounded text-white text-xs"> 12:21</span>
-                            <img src="{{asset('assets/images/icon-play.svg" class="w-12 h-12 uk-position-center" alt="">
-                        </a>
-                    </div>
-                    <div>
-                        <a href="video-watch.html" class="w-full h-36 overflow-hidden rounded-lg relative block">
-                            <img src="{{asset('assets/images/video/img-2.png" alt="" class="w-full h-full absolute inset-0 object-cover">
-                            <span class="absolute bg-black bg-opacity-60 bottom-1 font-semibold px-1.5 py-0.5 right-1 rounded text-white text-xs"> 12:21</span>
-                            <img src="{{asset('assets/images/icon-play.svg" class="w-12 h-12 uk-position-center" alt="">
-                        </a>
-                    </div>
-                    <div>
-                        <a href="video-watch.html" class="w-full h-36 overflow-hidden rounded-lg relative block">
-                            <img src="{{asset('assets/images/video/img-4.png" alt="" class="w-full h-full absolute inset-0 object-cover">
-                            <span class="absolute bg-black bg-opacity-60 bottom-1 font-semibold px-1.5 py-0.5 right-1 rounded text-white text-xs"> 12:21</span>
-                            <img src="{{asset('assets/images/icon-play.svg" class="w-12 h-12 uk-position-center" alt="">
-                        </a>
-                    </div>
-                </div>
-
-                <div class="flex justify-center mt-6">
-                    <a href="#" class="bg-white font-semibold my-3 px-6 py-2 rounded-full shadow-md dark:bg-gray-800 dark:text-white">
-                        Load more ..</a>
-                </div>
 
             </div>
 

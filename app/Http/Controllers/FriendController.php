@@ -22,20 +22,23 @@ class FriendController extends Controller
         return view('explore.find-friends', compact('usersNotFriendsWithLoggedInUser', 'friendsOfFriends', 'requests'));
     }
 
+
     function notFriends($loggedInUser) {
         $usersNotFriendsWithLoggedInUser = User::where('id', '!=', $loggedInUser->id)
-            ->whereNotIn('id', $loggedInUser->friends->pluck('id')) // Exclude friends of the logged-in user
-            ->whereNotIn('id', $loggedInUser->friendsWith->pluck('id'))
+            ->whereNotIn('id', $loggedInUser->showFriends()->pluck('id')) // Exclude friends
+            ->whereNotIn('id', $loggedInUser->friendRequest()->pluck('user_id')) // Exclude users with pending friend requests
+            ->whereNotIn('id', $loggedInUser->friendRequest()->pluck('friend_id')) // Exclude users with pending friend requests
             ->get();
+
         return $usersNotFriendsWithLoggedInUser;
     }
+
 
 
     function friendsYouMayKnow($loggedInUser) {
         // Get the IDs of the logged-in user's friends from both scenarios
         $loggedInUserFriendIds = array_merge(
-            $loggedInUser->friends->pluck('id')->toArray(),
-            $loggedInUser->friendsWith->pluck('id')->toArray()
+            $loggedInUser->showFriends()->pluck('id')->toArray(),
         );
 
         $friendsOfFriends = User::where(function ($query) use ($loggedInUserFriendIds) {
@@ -52,6 +55,8 @@ class FriendController extends Controller
 
         return $friendsOfFriends;
     }
+
+
 
 
 

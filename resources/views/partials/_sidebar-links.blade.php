@@ -40,7 +40,9 @@
         <h3 class="side-title"> Friends </h3>
 
         <div class="contact-list my-2 ml-1">
-            @foreach (auth()->user()->getFriends as $friend)
+
+
+            @foreach ($friends as $friend)
                 <a href="{{ Route("timeline", ['username' => urlencode($friend->username)] ) }}">
                     <div class="contact-avatar">
                         <img src="{{asset('useravatar/default.jpg')}}" alt="">

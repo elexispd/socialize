@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\View; // Make sure this import statement is present
 use Illuminate\Support\ServiceProvider;
+use App\Models\User;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +25,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        View::composer('partials._sidebar-links', function ($view) {
+            $user = auth()->user();
+
+            $friends = $user->showFriends();
+
+            $view->with(compact('friends'));
+        });
     }
 }

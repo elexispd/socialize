@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use App\Models\Friendship;
+use App\Models\Friendships;
 
 class User extends Authenticatable
 {
@@ -81,29 +81,38 @@ class User extends Authenticatable
 
     public function friends()
     {
-        return $this->belongsToMany(User::class, 'friendship', 'user_id', 'friend_id')
+        return $this->belongsToMany(User::class, 'friendships', 'user_id', 'friend_id')
         ->wherePivot('status', 1);
     }
 
 
     public function friendsWith()
     {
-        return $this->belongsToMany(User::class, 'friendship', 'friend_id', 'user_id')
+        return $this->belongsToMany(User::class, 'friendships', 'friend_id', 'user_id')
         ->wherePivot('status', 1);
     }
 
-    public function getfriends()
+    public function allFriends()
     {
-        return $this->belongsToMany(User::class, 'friendship', 'user_id', 'friend_id')
-            ->orWhere(function ($query) {
-                $query->where('friendship.friend_id', $this->id)
-                      ->where('friendship.status', 1);
-            })
-            ->wherePivot('status', 1);
+        return $this->hasMany(Friendship::class, 'user_id');
     }
 
+
+    public function showFriends()
+    {
+        return $this->friends->merge($this->friendsWith);
+    }
+
+
+
+
+
+
+
+
+
     public function friendRequest()  {
-        return $this->belongsToMany(User::class, 'friendship', 'friend_id', 'user_id')
+        return $this->belongsToMany(User::class, 'friendships', 'friend_id', 'user_id')
                ->wherePivot("status", 0);
     }
 

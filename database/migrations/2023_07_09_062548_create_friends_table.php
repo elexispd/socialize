@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('friendship', function (Blueprint $table) {
+        Schema::create('friendships', function (Blueprint $table) {
             $table->id();
             $table->foreignId("user_id");
             $table->foreignId("friend_id");
@@ -35,6 +35,6 @@ return new class extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::dropIfExists('friendship');
+        Schema::dropIfExists('friendships');
     }
 };
