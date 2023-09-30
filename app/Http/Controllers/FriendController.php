@@ -25,7 +25,7 @@ class FriendController extends Controller
 
     function notFriends($loggedInUser) {
         $usersNotFriendsWithLoggedInUser = User::where('id', '!=', $loggedInUser->id)
-            ->whereNotIn('id', $loggedInUser->showFriends()->pluck('id')) // Exclude friends
+            ->whereNotIn('id', $loggedInUser->allFriends()->pluck('id')) // Exclude friends
             ->whereNotIn('id', $loggedInUser->friendRequest()->pluck('user_id')) // Exclude users with pending friend requests
             ->whereNotIn('id', $loggedInUser->friendRequest()->pluck('friend_id')) // Exclude users with pending friend requests
             ->get();
@@ -38,7 +38,7 @@ class FriendController extends Controller
     function friendsYouMayKnow($loggedInUser) {
         // Get the IDs of the logged-in user's friends from both scenarios
         $loggedInUserFriendIds = array_merge(
-            $loggedInUser->showFriends()->pluck('id')->toArray(),
+            $loggedInUser->allFriends()->pluck('id')->toArray(),
         );
 
         $friendsOfFriends = User::where(function ($query) use ($loggedInUserFriendIds) {

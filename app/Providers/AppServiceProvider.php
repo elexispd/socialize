@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer('partials._sidebar-links', function ($view) {
             $user = auth()->user();
 
-            $friends = $user->showFriends();
+            $friends = $user->allFriends();
 
             $view->with(compact('friends'));
         });

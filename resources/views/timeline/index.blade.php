@@ -9,16 +9,22 @@
 
             <div class="profiles_banner">
                 <img src="{{ asset('assets/images/avatars/profile-cover.jpg') }}" alt="">
-                <div class="profile_action absolute bottom-0 right-0 space-x-1.5 p-3 text-sm z-50 hidden lg:flex">
-                  <a href="#" class="flex items-center justify-center h-8 px-3 rounded-md bg-gray-700 bg-opacity-70 text-white space-x-1.5">
-                      <ion-icon name="crop-outline" class="text-xl"></ion-icon>
-                      <span> Crop  </span>
-                  </a>
-                  <a href="#" class="flex items-center justify-center h-8 px-3 rounded-md bg-gray-700 bg-opacity-70 text-white space-x-1.5">
-                      <ion-icon name="create-outline" class="text-xl"></ion-icon>
-                      <span> Edit </span>
-                  </a>
-              </div>
+
+                @if (auth()->check() && $user->id == auth()->user()->id)
+                    <div class="profile_action absolute bottom-0 right-0 space-x-1.5 p-3 text-sm z-50 hidden lg:flex">
+                    <a href="#" class="flex items-center justify-center h-8 px-3 rounded-md bg-gray-700 bg-opacity-70 text-white space-x-1.5">
+                        <ion-icon name="crop-outline" class="text-xl"></ion-icon>
+                        <span> Crop  </span>
+                    </a>
+                    <a href="#" class="flex items-center justify-center h-8 px-3 rounded-md bg-gray-700 bg-opacity-70 text-white space-x-1.5">
+                        <ion-icon name="create-outline" class="text-xl"></ion-icon>
+                        <span> Edit </span>
+                    </a>
+
+                  </div>
+                @endif
+
+
             </div>
             <div class="profiles_content">
 
@@ -32,7 +38,7 @@
 
                 <div class="profile_info text-center">
                     <h1> {{ $user->getFullname() }} </h1>
-                    <p> Family , Food , Fashion , Fourever </p>
+                    <p> {{ $user->about }} </p>
                 </div>
 
             </div>
@@ -41,77 +47,66 @@
                 <nav class="responsive-nav pl-3">
                     <ul  uk-switcher="connect: #timeline-tab; animation: uk-animation-fade">
                         <li><a href="#">Timeline</a></li>
-                        <li><a href="#">Friend <span> {{ count($friends) }}  </span> </a></li>
+                        <li><a href="#">Friends <span> {{ count($friends) }}  </span> </a></li>
                         <li><a href="#">Photos </a></li>
                         <li><a href="#">Profile</a></li>
                     </ul>
                 </nav>
 
+                @if (auth()->check() && $user->id == auth()->user()->id)
+                    <!-- button actions -->
+                    <div class="flex items-center space-x-1.5 flex-shrink-0 pr-4 mb-2 justify-center order-1 relative">
 
-                     <!-- button actions -->
-                <div class="flex items-center space-x-1.5 flex-shrink-0 pr-4 mb-2 justify-center order-1 relative">
+                        <!-- add story -->
+                        <a href="#" class="flex items-center justify-center h-10 px-5 rounded-md bg-blue-600 text-white space-x-1.5 hover:text-white"  uk-toggle="target: #create-post-modal">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span> Add Your Story </span>
+                        </a>
 
-                    <!-- add story -->
-                    <a href="#" class="flex items-center justify-center h-10 px-5 rounded-md bg-blue-600 text-white space-x-1.5 hover:text-white"  uk-toggle="target: #create-post-modal">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path>
-                        </svg>
-                        <span> Add Your Story </span>
-                    </a>
 
-                    <!-- search icon -->
-                    <a href="#" class="flex items-center justify-center h-10 w-10 rounded-md bg-gray-100" uk-toggle="target: #profile-search;animation: uk-animation-slide-top-small">
-                      <ion-icon name="search" class="text-xl"></ion-icon>
-                    </a>
-                    <!-- search dropdown -->
-                    <div class="absolute right-3 bg-white z-10 w-full flex items-center border rounded-md"
-                        id="profile-search" hidden>
-                        <input type="text" placeholder="Search.." class="flex-1">
-                        <ion-icon name="close-outline" class="text-2xl hover:bg-gray-100 p-1 rounded-full mr-2 cursor-pointer" uk-toggle="target: #profile-search;animation: uk-animation-slide-top-small"></ion-icon>
+
+                        <!-- more icon -->
+                        <a href="#" class="flex items-center justify-center h-10 w-10 rounded-md bg-gray-100">
+                            <ion-icon name="ellipsis-horizontal" class="text-xl"></ion-icon>
+                        </a>
+                        <!-- more drowpdown -->
+                        <div class="bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700"
+                        uk-drop="mode: click;pos: bottom-right;animation: uk-animation-slide-bottom-small; offset:5">
+                            <ul class="space-y-1">
+                                <li>
+                                    <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-100 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
+                                    <ion-icon name="arrow-redo-outline" class="pr-2 text-xl"></ion-icon> Share Profile
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-100 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
+                                    <ion-icon name="create-outline" class="pr-2 text-xl"></ion-icon>  Account setting
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-100 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
+                                    <ion-icon name="notifications-off-outline" class="pr-2 text-lg"></ion-icon>   Disable notifications
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-100 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
+                                    <ion-icon name="star-outline"  class="pr-2 text-xl"></ion-icon>  Add favorites
+                                    </a>
+                                </li>
+                                <li>
+                                <hr class="-mx-2 my-2 dark:border-gray-800">
+                                </li>
+                                <li>
+                                    <a href="#" class="flex items-center px-3 py-2 text-red-500 hover:bg-red-50 hover:text-red-500 rounded-md dark:hover:bg-red-600">
+                                    <ion-icon name="stop-circle-outline" class="pr-2 text-xl"></ion-icon>  Unfriend
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-
-                    <!-- more icon -->
-                    <a href="#" class="flex items-center justify-center h-10 w-10 rounded-md bg-gray-100">
-                        <ion-icon name="ellipsis-horizontal" class="text-xl"></ion-icon>
-                    </a>
-                    <!-- more drowpdown -->
-                    <div class="bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700"
-                      uk-drop="mode: click;pos: bottom-right;animation: uk-animation-slide-bottom-small; offset:5">
-                          <ul class="space-y-1">
-                            <li>
-                                <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-100 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
-                                   <ion-icon name="arrow-redo-outline" class="pr-2 text-xl"></ion-icon> Share Profile
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-100 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
-                                  <ion-icon name="create-outline" class="pr-2 text-xl"></ion-icon>  Account setting
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-100 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
-                                  <ion-icon name="notifications-off-outline" class="pr-2 text-lg"></ion-icon>   Disable notifications
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-100 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
-                                  <ion-icon name="star-outline"  class="pr-2 text-xl"></ion-icon>  Add favorites
-                                </a>
-                            </li>
-                            <li>
-                              <hr class="-mx-2 my-2 dark:border-gray-800">
-                            </li>
-                            <li>
-                                <a href="#" class="flex items-center px-3 py-2 text-red-500 hover:bg-red-50 hover:text-red-500 rounded-md dark:hover:bg-red-600">
-                                  <ion-icon name="stop-circle-outline" class="pr-2 text-xl"></ion-icon>  Unfriend
-                                </a>
-                            </li>
-                          </ul>
-                    </div>
-                    </div>
-
-
-
+                @endif
             </div>
 
         </div>
@@ -122,27 +117,11 @@
             <div class="md:flex md:space-x-6 lg:mx-16">
                 <div class="space-y-5 flex-shrink-0 md:w-7/12">
 
-                   <!-- create post  -->
-                   <div class="card lg:mx-0 p-4" uk-toggle="target: #create-post-modal">
-                       <div class="flex space-x-3">
-                           <img src="{{ asset('assets/images/avatars/avatar-2.jpg') }}" class="w-10 h-10 rounded-full">
-                           <input placeholder="What's Your Mind ? Hamse!" class="bg-gray-100 hover:bg-gray-200 flex-1 h-10 px-6 rounded-full">
-                       </div>
-                       <div class="grid grid-flow-col pt-3 -mx-1 -mb-1 font-semibold text-sm">
-                            <div class="hover:bg-gray-100 flex items-center p-1.5 rounded-md cursor-pointer">
-                                <svg class="bg-blue-100 h-9 mr-2 p-1.5 rounded-full text-blue-600 w-9 -my-0.5 hidden lg:block" data-tippy-placement="top" title="Tooltip" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                                Photo/Video
-                            </div>
-                            <div class="hover:bg-gray-100 flex items-center p-1.5 rounded-md cursor-pointer">
-                                <svg class="bg-green-100 h-9 mr-2 p-1.5 rounded-full text-green-600 w-9 -my-0.5 hidden lg:block" uk-tooltip="title: Messages ; pos: bottom ;offset:7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" title="" aria-expanded="false"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path></svg>
-                                Tag Friend
-                            </div>
-                            <div class="hover:bg-gray-100 flex items-center p-1.5 rounded-md cursor-pointer">
-                                <svg class="bg-red-100 h-9 mr-2 p-1.5 rounded-full text-red-600 w-9 -my-0.5 hidden lg:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                Fealing /Activity
-                            </div>
-                       </div>
-                   </div>
+                @if (auth()->check() && $user->id == auth()->user()->id)
+                    <!-- create post  -->
+                   @include('partials._modal-post')
+                @endif
+
 
 
                    <div class="card lg:mx-0 uk-animation-slide-bottom-small">
@@ -443,7 +422,7 @@
                         <div class="flex items-center justify-between mb-4">
                             <div>
                                 <h4 class="text-lg font-semibold"> Friends </h4>
-                                <p class="text-sm"> {{ count($friends) }} Friends</p>
+                                <p class="text-sm"> {{ count($friends) }} {{ Str::plural('Friend', count($friends)) }}/p>
                             </div>
                             <a href="#" class="text-blue-600 ">See all</a>
                         </div>
@@ -522,16 +501,17 @@
                     </div>
 
                 </div>
+
             </div>
 
             <!-- Friends  -->
             <div class="card md:p-6 p-2 max-w-3xl mx-auto">
 
-                <h2 class="text-xl font-bold"> Friends</h2>
+                <h2 class="text-xl font-bold">{{ Str::plural('Friend', count($friends)) }}</h2>
 
                 <nav class="responsive-nav border-b">
                     <ul>
-                        <li class="active"><a href="#" class="lg:px-2"> All Friends <span> 3,4510 </span> </a></li>
+                        <li class="active"><a href="#" class="lg:px-2"> All Friends <span> {{ count($friends) }}</span> </a></li>
                         <li><a href="#" class="lg:px-2"> Recently added </a></li>
                         <li><a href="#" class="lg:px-2"> Family </a></li>
                         <li><a href="#" class="lg:px-2"> University </a></li>
@@ -540,102 +520,30 @@
 
                 <div class="grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-x-2 gap-y-4 mt-3">
 
-                    <div class="card p-2">
-                        <a href="timeline.html">
+                    @foreach ($friends as $friend)
+                      <div class="card p-2">
+                        <a href="{{ Route('timeline', ['username' => urlencode($friend->username)] ) }}">
                             <img src="{{asset('assets/images/avatars/avatar-2.jpg')}}" class="h-36 object-cover rounded-md shadow-sm w-full">
                         </a>
                         <div class="pt-3 px-1">
-                            <a href="timeline.html" class="text-base font-semibold mb-0.5">  James Lewis </a>
-                            <p class="font-medium text-sm">843K Following </p>
-                            <button class="bg-blue-100 w-full flex font-semibold h-8 items-center justify-center mt-3 px-3 rounded-md text-blue-600 text-sm mb-1">
-                                Following
-                            </button>
+                            <a href="{{ Route('timeline', ['username' => urlencode($friend->username)] ) }}" class="text-base font-semibold mb-0.5">  {{ $friend->firstname }} {{ $friend->lastname }}</a>
+                            <p class="font-medium text-sm">{{ $friend->friendCount }} {{ Str::plural('Friend', $friend->friendCount) }}</p>
+
+
+                            @if (!auth()->user()->isFriendWith($friend)  )
+                                <button class="bg-blue-100 w-full flex font-semibold h-8 items-center justify-center mt-3 px-3 rounded-md text-blue-600 text-sm mb-1">
+                                    Add Friend
+                                </button>
+                            @else
+                                <button class="bg-blue-100 w-full flex font-semibold h-8 items-center justify-center mt-3 px-3 rounded-md text-blue-600 text-sm mb-1">
+                                    Following
+                                </button>
+                            @endif
+
                         </div>
-                    </div>
-                    <div class="card p-2">
-                        <a href="timeline.html">
-                            <img src="{{asset('assets/images/avatars/avatar-3.jpg')}}" class="h-36 object-cover rounded-md shadow-sm w-full">
-                        </a>
-                        <div class="pt-3 px-1">
-                            <a href="timeline.html" class="text-base font-semibold mb-0.5"> Monroe Parker  </a>
-                            <p class="font-medium text-sm">843K Following </p>
-                            <button class="bg-blue-100 w-full flex font-semibold h-8 items-center justify-center mt-3 px-3 rounded-md text-blue-600 text-sm mb-1">
-                                Following
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card p-2">
-                        <a href="timeline.html">
-                            <img src="{{asset('assets/images/avatars/avatar-4.jpg')}}" class="h-36 object-cover rounded-md shadow-sm w-full">
-                        </a>
-                        <div class="pt-3 px-1">
-                            <a href="timeline.html" class="text-base font-semibold mb-0.5">  Martin Gray  </a>
-                            <p class="font-medium text-sm">843K Following </p>
-                            <button class="bg-blue-100 w-full flex font-semibold h-8 items-center justify-center mt-3 px-3 rounded-md text-blue-600 text-sm mb-1">
-                                Following
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card p-2">
-                        <a href="timeline.html">
-                            <img src="{{asset('assets/images/avatars/avatar-7.jpg')}}" class="h-36 object-cover rounded-md shadow-sm w-full">
-                        </a>
-                        <div class="pt-3 px-1">
-                            <a href="timeline.html" class="text-base font-semibold mb-0.5">  Alex Michael </a>
-                            <p class="font-medium text-sm">843K Following </p>
-                            <button class="bg-blue-100 w-full flex font-semibold h-8 items-center justify-center mt-3 px-3 rounded-md text-blue-600 text-sm mb-1">
-                                Following
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card p-2">
-                        <a href="timeline.html">
-                            <img src="{{asset('assets/images/avatars/avatar-5.jpg')}}" class="h-36 object-cover rounded-md shadow-sm w-full">
-                        </a>
-                        <div class="pt-3 px-1">
-                            <a href="timeline.html" class="text-base font-semibold mb-0.5"> Jesse Stevens  </a>
-                            <p class="font-medium text-sm">843K Following </p>
-                            <button class="bg-blue-100 w-full flex font-semibold h-8 items-center justify-center mt-3 px-3 rounded-md text-blue-600 text-sm mb-1">
-                                Following
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card p-2">
-                        <a href="timeline.html">
-                            <img src="{{asset('assets/images/avatars/avatar-6.jpg')}}" class="h-36 object-cover rounded-md shadow-sm w-full">
-                        </a>
-                        <div class="pt-3 px-1">
-                            <a href="timeline.html" class="text-base font-semibold mb-0.5"> Erica Jones  </a>
-                            <p class="font-medium text-sm">843K Following </p>
-                            <button class="bg-blue-100 w-full flex font-semibold h-8 items-center justify-center mt-3 px-3 rounded-md text-blue-600 text-sm mb-1">
-                                Following
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card p-2">
-                        <a href="timeline.html">
-                            <img src="{{asset('assets/images/avatars/avatar-2.jpg')}}" class="h-36 object-cover rounded-md shadow-sm w-full">
-                        </a>
-                        <div class="pt-3 px-1">
-                            <a href="timeline.html" class="text-base font-semibold mb-0.5">  James Lewis </a>
-                            <p class="font-medium text-sm">843K Following </p>
-                            <button class="bg-blue-100 w-full flex font-semibold h-8 items-center justify-center mt-3 px-3 rounded-md text-blue-600 text-sm mb-1">
-                                Following
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card p-2">
-                        <a href="timeline.html">
-                            <img src="{{asset('assets/images/avatars/avatar-3.jpg')}}" class="h-36 object-cover rounded-md shadow-sm w-full">
-                        </a>
-                        <div class="pt-3 px-1">
-                            <a href="timeline.html" class="text-base font-semibold mb-0.5"> Monroe Parker  </a>
-                            <p class="font-medium text-sm">843K Following </p>
-                            <button class="bg-blue-100 w-full flex font-semibold h-8 items-center justify-center mt-3 px-3 rounded-md text-blue-600 text-sm mb-1">
-                                Following
-                            </button>
-                        </div>
-                    </div>
+                      </div>
+
+                    @endforeach
 
                 </div>
 
@@ -790,7 +698,7 @@
 
             </div>
 
-            <!-- Pages  -->
+            <!-- Profile  -->
             <div class="card md:p-6 p-2 max-w-3xl mx-auto">
 
                 <div class="mt-5">
@@ -798,27 +706,27 @@
                     {{-- details of user here --}}
                     <div class="flex justify-between mt-5">
                         <div><strong>Education: </strong></div>
-                        <div>*************</div>
+                        <div>{{ $user->education }}</div>
                     </div>
 
                     <div class="flex justify-between mt-5">
                         <div><strong>Date Of Birth: </strong></div>
-                        <div>*************</div>
+                        <div>{{ $user->birthday }}</div>
                     </div>
 
                     <div class="flex justify-between mt-5">
                         <div><strong>Gender: </strong></div>
-                        <div>*************</div>
+                        <div>{{ $user->gender }}</div>
                     </div>
 
                     <div class="flex justify-between mt-5">
                         <div><strong>Email: </strong></div>
-                        <div>*************</div>
+                        <div>{{ $user->email }}</div>
                     </div>
 
                     <div class="flex justify-between mt-5">
                         <div><strong>Relationship: </strong></div>
-                        <div>*************</div>
+                        <div>{{ $user->relationship }}</div>
                     </div>
 
 

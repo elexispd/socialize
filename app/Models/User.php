@@ -93,15 +93,45 @@ class User extends Authenticatable
     }
 
     public function allFriends()
+{
+    $this->load('friends', 'friendsWith');
+
+    return $this->friends->merge($this->friendsWith);
+}
+
+
+
+
+    public function allFriendsWithCount()
     {
-        return $this->hasMany(Friendship::class, 'user_id');
+        $friends = $this->friends->merge($this->friendsWith);
+
+        return $friends->map(function ($friend) {
+            $friend->friendCount = $friend->allFriends()->count();
+            return $friend;
+        });
+    }
+
+    public function isFriendWith($friend)
+    {
+        $allFriends = $this->allFriends()->pluck('id')->toArray();
+
+        $result = in_array($friend->id, $allFriends, true);
+
+        return ($result);
     }
 
 
-    public function showFriends()
-    {
-        return $this->friends->merge($this->friendsWith);
-    }
+
+
+
+
+
+
+
+
+
+
 
 
 

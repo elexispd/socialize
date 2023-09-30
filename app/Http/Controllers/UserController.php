@@ -20,20 +20,12 @@ class UserController extends Controller
             $userID = User::where("id", $user->id)->pluck('id');
         }
 
-        $friends = $this->activeFriends($userID);
+        $friends = $user->allFriendsWithCount();
 
         return view('timeline.index', compact('user', 'friends'));
     }
 
-    private function activeFriends($userID) {
-        $friends = Friendships::where("status", 1)
-                 ->where("user_id", $userID)
-                 ->orWhere("friend_id", $userID)
-                 ->whereNotIn('user_id', $userID)
-                 ->whereNotIn('user_id', $userID)
-                 ->get();
-        return $friends;
-    }
+
 
 
     public function edit() {
