@@ -394,19 +394,16 @@
                         <ul class="text-gray-600 space-y-3 mt-3">
                             <li class="flex items-center space-x-2">
                                 <ion-icon name="home-sharp" class="rounded-full bg-gray-200 text-xl p-1 mr-3"></ion-icon>
-                                Live In <strong> Cairo , Eygept  </strong>
+                                Live In <strong> {{ $user->location }}  </strong>
                             </li>
-                            <li class="flex items-center space-x-2">
-                                <ion-icon name="globe" class="rounded-full bg-gray-200 text-xl p-1 mr-3"></ion-icon>
-                                From <strong> Aden , Yemen  </strong>
-                            </li>
+
                             <li class="flex items-center space-x-2">
                                 <ion-icon name="heart-sharp" class="rounded-full bg-gray-200 text-xl p-1 mr-3"></ion-icon>
-                                From <strong> Relationship  </strong>
+                                Relationship <strong> {{ $user->relationship }}  </strong>
                             </li>
                             <li class="flex items-center space-x-2">
                                 <ion-icon name="logo-rss" class="rounded-full bg-gray-200 text-xl p-1 mr-3"></ion-icon>
-                                Followed By <strong> 0  People </strong>
+                                Followed By <strong> {{ count($friends) }} {{ Str::plural("Person", count($friends)) }}</strong>
                             </li>
                         </ul>
                         <div class="gap-3 grid grid-cols-3 mt-4">
@@ -415,89 +412,10 @@
                           <img src="{{asset('assets/images/avatars/avatar-4.jpg')}}" alt="" class="rounded-lg">
                           <img src="{{asset('assets/images/avatars/avatar-5.jpg')}}" alt="" class="rounded-lg">
                       </div>
-                      <a href="#" class="button gray mt-3 w-full"> Edit </a>
-                    </div>
+                      @if (auth()->check() && $user->id === auth()->user()->id)
+                        <a href="{{ Route("edit_profile") }}" class="button gray mt-3 w-full"> Edit </a>
+                      @endif
 
-                    <div class="widget card p-5 border-t">
-                        <div class="flex items-center justify-between mb-4">
-                            <div>
-                                <h4 class="text-lg font-semibold"> Friends </h4>
-                                <p class="text-sm"> {{ count($friends) }} {{ Str::plural('Friend', count($friends)) }}/p>
-                            </div>
-                            <a href="#" class="text-blue-600 ">See all</a>
-                        </div>
-                        <div class="grid grid-cols-3 gap-3 text-gray-600 font-semibold">
-                            {{-- @foreach ($user->getFriends() as $friend)
-                                <a href="{{ Route('timeline', ['username' => urlencode($friend->username)]) }}">
-                                    <div class="avatar relative rounded-md overflow-hidden w-full h-24 mb-2">
-                                        <img src="{{asset('assets/images/avatars/avatar-1.jpg')}}" alt="" class="w-full h-full object-cover absolute">
-                                    </div>
-                                    <div class="text-sm truncate"> {{ $friend->firstname }} {{ $friend->lastname }}</div>
-                                </a>
-                            @endforeach --}}
-                        </div>
-                      <a href="#" class="button gray mt-3 w-full">  See all </a>
-                    </div>
-
-                    <div class="widget card p-5 border-t">
-                        <div class="flex items-center justify-between mb-2">
-                            <div>
-                                <h4 class="text-lg font-semibold"> Groups </h4>
-                            </div>
-                            <a href="#" class="text-blue-600 "> See all</a>
-                        </div>
-                        <div>
-
-                          <div class="flex items-center space-x-4 rounded-md -mx-2 p-2 hover:bg-gray-50">
-                              <a href="timeline-group.html" class="w-12 h-12 flex-shrink-0 overflow-hidden rounded-full relative">
-                                  <img src="{{asset('assets/images/group/group-3.jpg')}}" class="absolute w-full h-full inset-0 " alt="">
-                              </a>
-                              <div class="flex-1">
-                                  <a href="timeline-page.html" class="text-base font-semibold capitalize"> Graphic Design  </a>
-                                  <div class="text-sm text-gray-500 mt-0.5"> 345K  Following</div>
-                              </div>
-                              <a href="timeline-page.html" class="flex items-center justify-center h-8 px-3 rounded-md text-sm border font-semibold bg-blue-500 text-white">
-                                  Join
-                              </a>
-                          </div>
-                          <div class="flex items-center space-x-4 rounded-md -mx-2 p-2 hover:bg-gray-50">
-                              <a href="timeline-group.html" class="w-12 h-12 flex-shrink-0 overflow-hidden rounded-full relative">
-                                  <img src="{{asset('assets/images/group/group-4.jpg')}}" class="absolute w-full h-full inset-0 " alt="">
-                              </a>
-                              <div class="flex-1">
-                                  <a href="timeline-page.html" class="text-base font-semibold capitalize"> Mountain Riders </a>
-                                  <div class="text-sm text-gray-500 mt-0.5"> 452k Following </div>
-                              </div>
-                              <a href="timeline-page.html" class="flex items-center justify-center h-8 px-3 rounded-md text-sm border font-semibold bg-blue-500 text-white">
-                                  Join
-                              </a>
-                          </div>
-                          <div class="flex items-center space-x-4 rounded-md -mx-2 p-2 hover:bg-gray-50">
-                              <a href="timeline-group.html" class="w-12 h-12 flex-shrink-0 overflow-hidden rounded-full relative">
-                                  <img src="{{asset('assets/images/group/group-2.jpg')}}" class="absolute w-full h-full inset-0" alt="">
-                              </a>
-                              <div class="flex-1">
-                                  <a href="timeline-page.html" class="text-base font-semibold capitalize">  Coffee Addicts  </a>
-                                  <div class="text-sm text-gray-500 mt-0.5"> 845K Following</div>
-                              </div>
-                              <a href="timeline-page.html" class="flex items-center justify-center h-8 px-3 rounded-md text-sm border font-semibold bg-blue-500 text-white">
-                                  Join
-                              </a>
-                          </div>
-                          <div class="flex items-center space-x-4 rounded-md -mx-2 p-2 hover:bg-gray-50">
-                              <a href="timeline-group.html" class="w-12 h-12 flex-shrink-0 overflow-hidden rounded-full relative">
-                                  <img src="{{asset('assets/images/group/group-1.jpg')}}" class="absolute w-full h-full inset-0" alt="">
-                              </a>
-                              <div class="flex-1">
-                                  <a href="timeline-page.html" class="text-base font-semibold capitalize"> Architecture    </a>
-                                  <div class="text-sm text-gray-500 mt-0.5"> 237K Following</div>
-                              </div>
-                              <a href="timeline-page.html" class="flex items-center justify-center h-8 px-3 rounded-md text-sm border font-semibold bg-blue-500 text-white">
-                                  Join
-                              </a>
-                          </div>
-
-                        </div>
                     </div>
 
                 </div>
@@ -727,6 +645,11 @@
                     <div class="flex justify-between mt-5">
                         <div><strong>Relationship: </strong></div>
                         <div>{{ $user->relationship }}</div>
+                    </div>
+
+                    <div class="flex justify-between mt-5">
+                        <div><strong>Username: </strong></div>
+                        <div>{{ $user->username }}</div>
                     </div>
 
 
