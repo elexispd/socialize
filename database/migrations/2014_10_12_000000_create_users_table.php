@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('education', 250)->nullable();
             $table->string('location', 255)->nullable();
             $table->string('about')->nullable();
+            $table->string('workplace')->nullable();
             $table->date('birthday')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->boolean('is_online')->default(1);

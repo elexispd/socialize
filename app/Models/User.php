@@ -25,7 +25,16 @@ class User extends Authenticatable
         'username',
         'firstname',
         'lastname',
-        'consent'
+        'consent',
+        'email',
+        'about',
+        'education',
+        'workplace',
+        'location',
+        'relationship',
+        'phone_number',
+        'birthday',
+
     ];
 
     public function getAuthIdentifierName()
