@@ -444,7 +444,7 @@
                             <img src="{{asset('assets/images/avatars/avatar-2.jpg')}}" class="h-36 object-cover rounded-md shadow-sm w-full">
                         </a>
                         <div class="pt-3 px-1">
-                            <a href="{{ Route('timeline', ['username' => urlencode($friend->username)] ) }}" class="text-base font-semibold mb-0.5">  {{ $friend->firstname }} {{ $friend->lastname }}</a>
+                            <a href="{{ Route('timeline', ['username' => urlencode($friend->username)] ) }}" class="text-base font-semibold mb-0.5">  {{ $friend->getFullName()}} </a>
                             <p class="font-medium text-sm">{{ $friend->friendCount }} {{ Str::plural('Friend', $friend->friendCount) }}</p>
 
 

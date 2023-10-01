@@ -20,7 +20,7 @@
                                         <div class="card">
                                             <img src="{{ asset('useravatar/default.jpg') }}" class="h-44 object-cover rounded-t-md shadow-sm w-full">
                                             <div class="p-4">
-                                                <h4 class="text-base font-semibold mb-1"> {{ $user->firstname }}  {{ $user->lastname }}</h4>
+                                                <h4 class="text-base font-semibold mb-1"> {{ $user->getFullName() }}  </h4>
                                                 <a href="#" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-sm text-xs">Add Friends</a>
                                             </div>
                                         </div>
@@ -104,7 +104,7 @@
                                             <img src="{{ asset('useravatar/default.jpg') }} " class="absolute w-full h-full inset-0" alt="">
                                         </a>
                                         <div class="flex-1">
-                                            <a href="#" class="text-base font-semibold capitalize"> {{ $request->firstname }}  {{ $request->lastname }} </a>
+                                            <a href="#" class="text-base font-semibold capitalize"> {{ $request->getFullName() }}   </a>
                                         </div>
                                         <ul>
                                             <li>

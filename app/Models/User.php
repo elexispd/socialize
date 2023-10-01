@@ -22,7 +22,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'password',
-        'username'
+        'username',
+        'firstname',
+        'lastname',
+        'consent'
     ];
 
     public function getAuthIdentifierName()

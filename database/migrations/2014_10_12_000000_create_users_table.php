@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('lastname', 100);
             $table->string('username', 50)->unique();
             $table->string('phone_number', 20)->unique()->nullable();
-            $table->string('email', 100)->unique();
+            $table->string('email', 100)->unique()->nullable();
             $table->string('password');
             $table->string('gender', 15)->nullable();
             $table->string('relationship', 30)->nullable();
@@ -28,9 +28,9 @@ return new class extends Migration
             $table->string('about')->nullable();
             $table->date('birthday')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->boolean('is_online');
+            $table->boolean('is_online')->default(1);
             $table->timestamp('last_seen')->nullable();
-            $table->boolean('status');
+            $table->boolean('status')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });

@@ -22,7 +22,7 @@ Route::get('signin', [App\Http\Controllers\Auth\LoginController::class, 'show'])
 Route::post('signin', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('signin');
 
 Route::get('signup', [App\Http\Controllers\Auth\RegisterController::class, 'show'])->name('signup');
-Route::post('signup', [App\Http\Controllers\Auth\RegisterController::class, 'register'])->name('signup');
+Route::post('signup', [App\Http\Controllers\Auth\RegisterController::class, 'store'])->name('register');
 
 Route::post('/signout', 'App\Http\Controllers\Auth\LoginController@logout')->name('signout');
 

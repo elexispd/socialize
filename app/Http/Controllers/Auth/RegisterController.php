@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -49,19 +50,35 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'firstname' => ['required', 'string', 'max:255'],
+            'lastname' => ['required', 'string', 'string', 'max:255'],
+            'username' => ['required', 'string', 'max:255', 'unique:users','regex:/^[a-zA-Z][a-zA-Z0-9]*(?:\.[a-zA-Z0-9]+)*[a-zA-Z0-9]$/'],
+            'password' => ['required', 'string', 'min:8'],
+            'consent' => ['required'],
         ]);
     }
 
 
-    protected function create(array $data)
+    protected function store(Request $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+        // Validate the input data
+        $validator = $this->validator($request->all());
+
+        // If validation fails, redirect back with errors
+        if ($validator->fails()) {
+            return redirect()->route('signup')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        $user = User::create([
+            'firstname' => $request->input('firstname'),
+            'lastname' => $request->input('lastname'),
+            'username' => $request->input('username'),
+            'password' => Hash::make($request->input('password')),
         ]);
+
+        return redirect()->route('signin')->with('success', 'Your Account has been create. Sign In to continue');
+
     }
 }

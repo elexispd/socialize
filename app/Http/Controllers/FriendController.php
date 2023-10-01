@@ -28,7 +28,8 @@ class FriendController extends Controller
             ->whereNotIn('id', $loggedInUser->allFriends()->pluck('id')) // Exclude friends
             ->whereNotIn('id', $loggedInUser->friendRequest()->pluck('user_id')) // Exclude users with pending friend requests
             ->whereNotIn('id', $loggedInUser->friendRequest()->pluck('friend_id')) // Exclude users with pending friend requests
-            ->get();
+            ->inRandomOrder()
+            ->take(15)->get();
 
         return $usersNotFriendsWithLoggedInUser;
     }

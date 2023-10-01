@@ -53,9 +53,7 @@
             @endforeach
         </div>
 
-            <a href="feed.html">
-                Settings
-            </a>
+
     </div>
 
     <!-- sidebar overly for mobile -->
