@@ -32,7 +32,6 @@ class UserController extends Controller
         $rules =  [
             'firstname' => ['string', 'max:255','regex:/^[a-zA-Z ]+$/' ],
             'lastname' => ['string', 'max:255','regex:/^[a-zA-Z ]+$/'],
-            'email' => ['email', 'max:255', 'unique:users'],
             'about' => ['string', 'max:1000'],
             'education' => ['string', 'max:1000'],
             'location' => ['string', 'max:500'],
@@ -41,11 +40,17 @@ class UserController extends Controller
             'phone_number' => ['regex:/^\+?[0-9]+$/'],
             'relationship' => ['string', 'max:250','regex:/^[a-zA-Z ]+$/' ],
         ];
+
         // Remove rules for empty fields
         foreach ($requestData as $field => $value) {
             if (empty($value)) {
                 unset($rules[$field]);
             }
+        }
+
+         // Check if email has changed, and update validation rule accordingly
+        if (isset($requestData['email']) && $requestData['email'] !== auth()->user()->email) {
+            $rules['email'] = ['email', 'max:255', 'unique:users'];
         }
 
         return $rules;
