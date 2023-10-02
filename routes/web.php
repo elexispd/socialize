@@ -29,11 +29,11 @@ Route::post('/signout', 'App\Http\Controllers\Auth\LoginController@logout')->nam
 
 Route::group(["middleware" => "auth"], function() {
     Route::get('/', [App\Http\Controllers\FeedController::class, 'index'])->name('feed');
-
     Route::get('/timeline', [App\Http\Controllers\UserController::class, 'timeline'])->name("myTimeline");
     Route::get('/timeline/{username}', [App\Http\Controllers\UserController::class, 'timeline'])->name("timeline");
     Route::get('/chat', [App\Http\Controllers\MessageController::class, 'index'])->name("messages");
     Route::get('/explore', [App\Http\Controllers\FriendController::class, 'explore'])->name("find-friends");
+    Route::post('/explore', [App\Http\Controllers\UserController::class, 'addFriend'])->name("add_friend");
     Route::get('/profile/edit', [App\Http\Controllers\UserController::class, 'edit'])->name("edit_profile");
     Route::put('/profile/edit', [App\Http\Controllers\UserController::class, 'update'])->name("update_profile");
 });

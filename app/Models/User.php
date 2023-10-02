@@ -105,11 +105,11 @@ class User extends Authenticatable
     }
 
     public function allFriends()
-{
-    $this->load('friends', 'friendsWith');
+    {
+        $this->load('friends', 'friendsWith');
 
-    return $this->friends->merge($this->friendsWith);
-}
+        return $this->friends->merge($this->friendsWith);
+    }
 
 
 
@@ -133,28 +133,13 @@ class User extends Authenticatable
         return ($result);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public function friendRequest()  {
+    public function receivedFriendRequest()  {
         return $this->belongsToMany(User::class, 'friendships', 'friend_id', 'user_id')
+               ->wherePivot("status", 0);
+    }
+
+    public function sentFriendRequest()  {
+        return $this->belongsToMany(User::class, 'friendships', 'user_id', 'user_id')
                ->wherePivot("status", 0);
     }
 

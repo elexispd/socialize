@@ -5,7 +5,11 @@
      <!-- Main Contents -->
      <div class="main_content">
         <div class="mcontainer">
-
+            @if (session()->has('success'))
+                <div class="inline-block bg-green-500 text-white p-4 rounded-md">
+                    {{ session('success') }}
+                </div>
+            @endif
             <div class="lg:flex lg:space-x-10">
 
                 <div class="lg:w-2/3">
@@ -13,19 +17,26 @@
                     <div class="relative" uk-slider="finite: true">
                         <div class="uk-slider-container px-1 py-3">
                             <ul class="uk-slider-items uk-child-width-1-3@m uk-child-width-1-3@s uk-child-width-1-2 uk-grid-small uk-grid">
-
                               @foreach ($usersNotFriendsWithLoggedInUser as $user)
-                                <li>
-                                    <a href="{{ Route('timeline', $user->username) }}" class="uk-link-reset">
-                                        <div class="card">
-                                            <img src="{{ asset('useravatar/default.jpg') }}" class="h-44 object-cover rounded-t-md shadow-sm w-full">
-                                            <div class="p-4">
-                                                <h4 class="text-base font-semibold mb-1"> {{ $user->getFullName() }}  </h4>
-                                                <a href="#" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-sm text-xs">Add Friends</a>
+                                <form action="{{ route('add_friend') }}" method="post">
+                                    @csrf
+                                    <li>
+                                        <a href="{{ Route('timeline', $user->username) }}" class="uk-link-reset">
+                                            <div class="card">
+                                                <img src="{{ asset('useravatar/default.jpg') }}" class="h-44 object-cover rounded-t-md shadow-sm w-full">
+                                                <div class="p-4">
+                                                    <h4 class="text-base font-semibold mb-1"> {{ $user->getFullName() }}  </h4>
+                                                    <input type="text" name="friend_id" id="" value="{{ $user->id }}" hidden>
+                                                    @if ($user->sentFriendRequest->contains(auth()->user()))
+                            <button type="submit" class="bg-red-500 text-white font-bold py-2 px-4 rounded-sm text-xs">Cancel Request</button>
+                        @else
+                            <button type="submit" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-sm text-xs">Add Friends {{ $user->id }}</button>
+                        @endif
+                                                </div>
                                             </div>
-                                        </div>
-                                    </a>
-                                </li>
+                                        </a>
+                                    </li>
+                                </form>
                               @endforeach
 
                             </ul>
@@ -95,10 +106,10 @@
 
                         <div class="p-4 -mt-1.5">
 
-                            @if ($requests->isEmpty())
+                            @if ($receivedRequests->isEmpty())
                                 <p class="text-center text-gray-500">You have no friend requests</p>
                             @else
-                                    @foreach ($requests as $request)
+                                    @foreach ($receivedRequests as $request)
                                     <div class="flex items-center space-x-4 rounded-md -mx-2 p-2 hover:bg-gray-50">
                                         <a href="#" class="w-12 h-12 flex-shrink-0 overflow-hidden rounded-full relative">
                                             <img src="{{ asset('useravatar/default.jpg') }} " class="absolute w-full h-full inset-0" alt="">

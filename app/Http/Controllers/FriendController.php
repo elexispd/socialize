@@ -17,17 +17,18 @@ class FriendController extends Controller
 
         $usersNotFriendsWithLoggedInUser = $this->notFriends($loggedInUser);
         $friendsOfFriends = $this->friendsYouMayKnow($loggedInUser);
-        $requests = auth()->user()->friendRequest;
+        $receivedRequests = auth()->user()->receivedFriendRequest;
+        $sentRequests = auth()->user()->sentFriendRequest;
 
-        return view('explore.find-friends', compact('usersNotFriendsWithLoggedInUser', 'friendsOfFriends', 'requests'));
+        return view('explore.find-friends', compact('usersNotFriendsWithLoggedInUser', 'friendsOfFriends', 'receivedRequests', 'sentRequests'));
     }
 
 
     function notFriends($loggedInUser) {
         $usersNotFriendsWithLoggedInUser = User::where('id', '!=', $loggedInUser->id)
             ->whereNotIn('id', $loggedInUser->allFriends()->pluck('id')) // Exclude friends
-            ->whereNotIn('id', $loggedInUser->friendRequest()->pluck('user_id')) // Exclude users with pending friend requests
-            ->whereNotIn('id', $loggedInUser->friendRequest()->pluck('friend_id')) // Exclude users with pending friend requests
+            ->whereNotIn('id', $loggedInUser->receivedFriendRequest()->pluck('user_id')) // Exclude users with pending friend requests
+            ->whereNotIn('id', $loggedInUser->receivedFriendRequest()->pluck('friend_id')) // Exclude users with pending friend requests
             ->inRandomOrder()
             ->take(15)->get();
 

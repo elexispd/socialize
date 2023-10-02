@@ -27,6 +27,21 @@ class UserController extends Controller
         return view('timeline.index', compact('user', 'friends'));
     }
 
+    public function addFriend(Request $request) {
+        $user_id = auth()->user()->id;
+        $friend_id = $request->input('friend_id');
+
+        // Create a new friendship using Eloquent
+        $friendship = Friendships::create([
+            'user_id' => $user_id,
+            'friend_id' => $friend_id,
+            'status' => false,
+        ]);
+
+        return redirect()->route('find-friends')->with('success', 'Friend request sent');
+
+    }
+
     protected function validator($userID, $requestData)
     {
         $rules =  [
