@@ -114,6 +114,8 @@ class User extends Authenticatable
 
 
 
+
+
     public function allFriendsWithCount()
     {
         $friends = $this->friends->merge($this->friendsWith);
@@ -138,10 +140,8 @@ class User extends Authenticatable
                ->wherePivot("status", 0);
     }
 
-    public function sentFriendRequest()  {
-        return $this->belongsToMany(User::class, 'friendships', 'user_id', 'user_id')
-               ->wherePivot("status", 0);
-    }
+
+
 
 
 

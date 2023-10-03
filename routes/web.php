@@ -19,10 +19,10 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 
 Route::get('signin', [App\Http\Controllers\Auth\LoginController::class, 'show'])->name('signin');
-Route::post('signin', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('signin');
+Route::post('signin', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('sign');
 
 Route::get('signup', [App\Http\Controllers\Auth\RegisterController::class, 'show'])->name('signup');
-Route::post('signup', [App\Http\Controllers\Auth\RegisterController::class, 'store'])->name('register');
+Route::post('signup', [App\Http\Controllers\Auth\RegisterController::class, 'store'])->name('register_post');
 
 Route::post('/signout', 'App\Http\Controllers\Auth\LoginController@logout')->name('signout');
 
@@ -33,7 +33,8 @@ Route::group(["middleware" => "auth"], function() {
     Route::get('/timeline/{username}', [App\Http\Controllers\UserController::class, 'timeline'])->name("timeline");
     Route::get('/chat', [App\Http\Controllers\MessageController::class, 'index'])->name("messages");
     Route::get('/explore', [App\Http\Controllers\FriendController::class, 'explore'])->name("find-friends");
-    Route::post('/explore', [App\Http\Controllers\UserController::class, 'addFriend'])->name("add_friend");
+    Route::post('/explore', [App\Http\Controllers\FriendController::class, 'addFriend'])->name("add_friend");
+    Route::post('/explore', [App\Http\Controllers\FriendController::class, 'action'])->name("request_action");
     Route::get('/profile/edit', [App\Http\Controllers\UserController::class, 'edit'])->name("edit_profile");
     Route::put('/profile/edit', [App\Http\Controllers\UserController::class, 'update'])->name("update_profile");
 });

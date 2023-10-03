@@ -27,6 +27,13 @@ class Friendships extends Model
         return $this->belongsTo(User::class, 'friend_id');
     }
 
+    public function pendingRequests($user_id)
+    {
+        return $this->where('user_id', $user_id);
+    }
+
+
+
 
 
 
