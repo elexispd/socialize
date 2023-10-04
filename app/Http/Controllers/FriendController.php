@@ -20,13 +20,15 @@ class FriendController extends Controller
         $friendsOfFriends = $this->friendsYouMayKnow($loggedInUser);
         $receivedRequests = auth()->user()->receivedFriendRequest;
 
-        $friendshipsInstance = new Friendships();
-
-        $mySentRequests = $friendshipsInstance->pendingRequests(auth()->user()->id)->get();
-
+        $mySentRequests = $this->sentRequest();
         return view('explore.find-friends', compact('usersNotFriendsWithLoggedInUser', 'friendsOfFriends', 'receivedRequests', 'mySentRequests'));
     }
 
+    public function sentRequest() {
+        $friendshipsInstance = new Friendships();
+        $mySentRequests = $friendshipsInstance->pendingRequests(auth()->user()->id)->get();
+        return $mySentRequests;
+    }
 
     function notFriends($loggedInUser) {
         $usersNotFriendsWithLoggedInUser = User::where('id', '!=', $loggedInUser->id)
@@ -61,7 +63,7 @@ class FriendController extends Controller
         return $friendsOfFriends;
     }
 
-    public function addFriend(Request $request) {
+    public function store(Request $request) {
         $user_id = auth()->user()->id;
         $friend_id = $request->input('friend_id');
 
@@ -73,9 +75,9 @@ class FriendController extends Controller
         ]);
 
         if($friendship) {
-            return true;
+            return redirect()->back()->with('success', 'Friend request sent');
         } else {
-            return false;
+            return redirect()->back()->with('info', 'Something went wrong');;
         }
 
     }
@@ -95,42 +97,18 @@ class FriendController extends Controller
         }
     }
 
-   public function action(Request $request) {
-         $friend_id = $request->input("friend_id");
-         $user_id = $request->input("user_id");
+    public function destroy($id) {
+        $resource = Friendships::where('user_id', $id)->orWhere("friend_id", $id)->firstOrFail();
+        $resource->delete();
+        $message = request()->input('message');
+        return redirect()->back()->with('info', $message );
+    }
 
-        switch ($request->input("action")) {
-            case 'add':
-                $status = $this->addFriend($request);
-                if($status) {
-                    return redirect()->route('find-friends')->with('success', 'Friend request sent');
-                } else {
-                    return redirect()->route('find-friends')->with('info', 'Something went wrong');
-                }
-                break;
-            case 'cancel':
-                $status = $this->deleteFriend($request);
-                if($status) {
-                    return redirect()->route('find-friends')->with('success', 'Friend request cancelled successfully');
-                } else {
-                    return redirect()->route('find-friends')->with('info', 'User not found');
-                }
-                break;
-
-            default:
-                    return redirect()->route('find-friends')->with('info', 'No change dictated');
-                break;
-        }
-
-
-
-     }
-
-
-
-
-
-
+    public function update($id) {
+        $resource = Friendships::where('user_id', $id)->firstOrFail();
+        $resource->update(['status' => true]);
+        return redirect()->back()->with('success', 'Friend request accepted');
+    }
 
 
 

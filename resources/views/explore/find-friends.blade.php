@@ -6,15 +6,8 @@
      <div class="main_content">
         <div class="mcontainer">
 
-            @if (session()->has('success'))
-                <div class="bg-green-500 text-center w-100 text-white p-4 rounded-md" style="width: 50%;">
-                    {{ session('success') }}
-                </div>
-            @elseif(session()->has('info'))
-                <div class="bg-blue-400 text-center w-100 text-white p-4 rounded-md" style="width: 50%;">
-                    {{ session('info') }}
-                </div>
-            @endif
+            @include("partials._message")
+
             <div class="lg:flex lg:space-x-10">
                 <div class="lg:w-2/3">
                     <h2 class="text-xl font-semibold"> Add Users </h2>
@@ -23,25 +16,33 @@
                             <ul class="uk-slider-items uk-child-width-1-3@m uk-child-width-1-3@s uk-child-width-1-2 uk-grid-small uk-grid">
 
                               @foreach ($usersNotFriendsWithLoggedInUser as $user)
-                                <form action="{{ route('request_action') }}" method="post" id="friendForm">
-                                    @csrf
-                                    <li>
-                                        <a href="{{ Route('timeline', $user->username) }}" class="uk-link-reset">
-                                            <div class="card">
-                                                <img src="{{ asset('useravatar/default.jpg') }}" class="h-44 object-cover rounded-t-md shadow-sm w-full">
-                                                <div class="p-4">
-                                                    <h4 class="text-base font-semibold mb-1"> {{ $user->getFullName() }} {{ $user->id }}  </h4>
-                                                    <input type="text" name="friend_id" id="" value="{{ $user->id }}" hidden>
-                                                    @if ( $mySentRequests->contains('friend_id', $user->id) )
-                                                        <button type="submit" class="bg-blue-400 text-white font-bold py-2 px-4 rounded-sm text-xs" name="action" id="cancel" value="cancel">Cancel Request</button>
-                                                    @else
+
+                                <li>
+                                    <a href="{{ Route('timeline', $user->username) }}" class="uk-link-reset">
+                                        <div class="card">
+                                            <img src="{{ asset('useravatar/default.jpg') }}" class="h-44 object-cover rounded-t-md shadow-sm w-full">
+                                            <div class="p-4">
+                                                <h4 class="text-base font-semibold mb-1"> {{ $user->getFullName() }}  </h4>
+
+                                                @if ( $mySentRequests->contains('friend_id', $user->id) )
+                                                    <form action="{{ route('unfriend',  ['id' => $user->id] ) }}" method="post">
+                                                        @csrf
+                                                        @method("delete")
+                                                        <input type="hidden" name="message" value="Friend request cancelled" hidden>
+                                                        <button type="submit" class="bg-blue-400 text-white font-bold py-2 px-4 rounded-sm text-xs" >Cancel Request</button>
+                                                    </form>
+                                                @else
+                                                    <form action="{{ route('addFriend') }}" method="post">
+                                                        @csrf
+                                                        <input type="number" name="friend_id" id="" value="{{ $user->id }}" hidden>
                                                         <button type="submit" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-sm text-xs" name="action" id="add" value="add">Add Friends </button>
-                                                    @endif
-                                                </div>
+                                                    </form>
+                                                @endif
                                             </div>
-                                        </a>
-                                    </li>
-                                </form>
+                                        </div>
+                                    </a>
+                                </li>
+
                               @endforeach
 
                             </ul>
@@ -114,7 +115,7 @@
                             @if ($receivedRequests->isEmpty())
                                 <p class="text-center text-gray-500">You have no friend requests</p>
                             @else
-                                    @foreach ($receivedRequests as $request)
+                                @foreach ($receivedRequests as $request)
                                     <div class="flex items-center space-x-4 rounded-md -mx-2 p-2 hover:bg-gray-50">
                                         <a href="#" class="w-12 h-12 flex-shrink-0 overflow-hidden rounded-full relative">
                                             <img src="{{ asset('useravatar/default.jpg') }} " class="absolute w-full h-full inset-0" alt="">
@@ -123,22 +124,31 @@
                                             <a href="#" class="text-base font-semibold capitalize"> {{ $request->getFullName() }}   </a>
                                         </div>
                                         <ul>
-                                            <li>
-                                                <a href="#"
-                                                    class="flex items-center justify-center h-8 px-3 rounded-md text-sm border font-semibold">
-                                                    Accept
-                                                </a>
-                                            </li>
-                                            <li class="mt-2">
-                                                <a href="#"
-                                                    class="flex items-center justify-center h-8 px-3 rounded-md text-sm border font-semibold">
-                                                    Decline
-                                                </a>
-                                            </li>
+                                            <form method="post" action="{{ route('accept_request',  $request->id ) }}">
+                                                @csrf
+                                                @method("put")
+                                                    <li>
+                                                        <button type="submit" class="flex items-center justify-center h-8 px-3 rounded-md text-sm border font-semibold bg-blue-400 text-white">
+                                                            Accept
+                                                        </button>
+                                                    </li>
+                                            </form>
+
+                                            <form method="post" action="{{ route('decline_request',  $request->id) }}">
+                                                @csrf
+                                                @method("delete")
+                                                <li>
+                                                <input type="hidden" name="message" value="Friend request declined" hidden>
+                                                <button type="submit" class="flex items-center justify-center h-8 px-3 rounded-md text-sm border font-semibold">
+                                                        Decline
+                                                </button>
+                                                <li>
+                                            </form>
 
                                         </ul>
                                     </div>
                                 @endforeach
+
                                 <a href="#" class="block text-center pb-4 font-medium text-blue-500"> See all </a>
                             @endif
 

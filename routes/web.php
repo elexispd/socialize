@@ -31,11 +31,25 @@ Route::group(["middleware" => "auth"], function() {
     Route::get('/', [App\Http\Controllers\FeedController::class, 'index'])->name('feed');
     Route::get('/timeline', [App\Http\Controllers\UserController::class, 'timeline'])->name("myTimeline");
     Route::get('/timeline/{username}', [App\Http\Controllers\UserController::class, 'timeline'])->name("timeline");
+
+    // Route::delete('/timeline/{id}', [App\Http\Controllers\FriendController::class, 'destroy'])->name("timeline_unfriend");
+    // Route::post('/timeline/friend', [App\Http\Controllers\FriendController::class, 'store'])->name("timeline_addFriend");
+
     Route::get('/chat', [App\Http\Controllers\MessageController::class, 'index'])->name("messages");
+
+    Route::post('/friendRequest', [App\Http\Controllers\FriendController::class, 'store'])->name("addFriend");
+    Route::delete('/unfriend/{id}', [App\Http\Controllers\FriendController::class, 'destroy'])->name("unfriend");
+    Route::put('/acceptFriendRequest/{id}', [App\Http\Controllers\FriendController::class, 'update'])->name("accept_request");
+    Route::delete('/declineFriendRequest/{id}', [App\Http\Controllers\FriendController::class, 'destroy'])->name("decline_request");
+
+
     Route::get('/explore', [App\Http\Controllers\FriendController::class, 'explore'])->name("find-friends");
-    Route::post('/explore', [App\Http\Controllers\FriendController::class, 'addFriend'])->name("add_friend");
-    Route::post('/explore', [App\Http\Controllers\FriendController::class, 'action'])->name("request_action");
+    Route::delete('/explore/{id}', [App\Http\Controllers\FriendController::class, 'destroy'])->name("decline_request");
+
+
     Route::get('/profile/edit', [App\Http\Controllers\UserController::class, 'edit'])->name("edit_profile");
     Route::put('/profile/edit', [App\Http\Controllers\UserController::class, 'update'])->name("update_profile");
 });
+
+
 

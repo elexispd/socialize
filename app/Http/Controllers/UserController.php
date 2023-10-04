@@ -22,9 +22,17 @@ class UserController extends Controller
             $userID = User::where("id", $user->id)->pluck('id');
         }
 
-        $friends = $user->allFriendsWithCount();
 
-        return view('timeline.index', compact('user', 'friends'));
+        $friends = $user->allFriendsWithCount();
+        $mySentRequests = $this->sentRequest();
+
+        return view('timeline.index', compact('user', 'friends', 'mySentRequests'));
+    }
+
+    public function sentRequest() {
+        $friendshipsInstance = new Friendships();
+        $mySentRequests = $friendshipsInstance->pendingRequests(auth()->user()->id)->get();
+        return $mySentRequests;
     }
 
 
