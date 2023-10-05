@@ -49,6 +49,9 @@ Route::group(["middleware" => "auth"], function() {
 
     Route::get('/profile/edit', [App\Http\Controllers\UserController::class, 'edit'])->name("edit_profile");
     Route::put('/profile/edit', [App\Http\Controllers\UserController::class, 'update'])->name("update_profile");
+
+    Route::patch('/markAsRead/{id}', [App\Http\Controllers\NotificationController::class, 'markAsRead'])->name('markAsRead');
+
 });
 
 

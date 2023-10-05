@@ -55,33 +55,36 @@
                         <li><a href="#">Profile</a></li>
                     </ul>
                 </nav>
-                @if (auth()->user()->isFriendWith($user))
-                    <form action="{{ route('unfriend', $user->id) }}" method="post" style="margin-right: 50px;">
-                        @csrf
-                        @method("delete")
-                        <button type="submit" class=" h-10 px-5 rounded-md bg-blue-600 text-white space-x-1.5 hover:text-white">
-                            Unfriend
-                        </button>
-                    </form>
-                @else
-                    @if ( $mySentRequests->contains('friend_id', $user->id) )
+                @if (auth()->user()->id != $user->id)
 
-                        <form action="{{ route('unfriend',  ['id' => $user->id] ) }}" method="post">
+                    @if (auth()->user()->isFriendWith($user) )
+                        <form action="{{ route('unfriend', $user->id) }}" method="post" style="margin-right: 50px;">
                             @csrf
                             @method("delete")
-                            <input type="hidden" name="message" value="Friend request cancelled" hidden>
-                            <button type="submit" class="bg-blue-400 text-white font-bold py-2 px-4 rounded-sm text-xs" >Cancel Request</button>
-                        </form>
-                    @else
-                        <form action="{{ route('addFriend') }}" method="post">
-                            @csrf
-                            <input type="number" name="friend_id" id="" value="{{ $user->id }}" hidden>
-                            <button type="submit" class=" h-10 px-5 rounded-md bg-blue-600 text-white space-x-1.5 hover:text-white"  style="width: 130px;">
-                                Add Friend
+                            <button type="submit" class=" h-10 px-5 rounded-md bg-blue-600 text-white space-x-1.5 hover:text-white">
+                                Unfriend
                             </button>
                         </form>
-                    @endif
+                    @else
+                        @if ( $mySentRequests->contains('friend_id', $user->id) )
 
+                            <form action="{{ route('unfriend',  ['id' => $user->id] ) }}" method="post">
+                                @csrf
+                                @method("delete")
+                                <input type="hidden" name="message" value="Friend request cancelled" hidden>
+                                <button type="submit" class="bg-blue-400 text-white font-bold py-2 px-4 rounded-sm text-xs" >Cancel Request</button>
+                            </form>
+                        @else
+                            <form action="{{ route('addFriend') }}" method="post">
+                                @csrf
+                                <input type="number" name="friend_id" id="" value="{{ $user->id }}" hidden>
+                                <button type="submit" class=" h-10 px-5 rounded-md bg-blue-600 text-white space-x-1.5 hover:text-white"  style="width: 130px;">
+                                    Add Friend
+                                </button>
+                            </form>
+                        @endif
+
+                    @endif
                 @endif
 
                 @if (auth()->check() && $user->id == auth()->user()->id)

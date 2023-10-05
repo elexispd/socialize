@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User; // Import the User model
 use App\Models\Friendships; // Import the User model
 use Illuminate\Support\Facades\Validator;
+use App\Notifications\FriendRequestNotification;
 
 
 class UserController extends Controller

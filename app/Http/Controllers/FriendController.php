@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Friendships;
+use App\Notifications\FriendRequestNotification;
 
 class FriendController extends Controller
 {
@@ -65,7 +66,10 @@ class FriendController extends Controller
 
     public function store(Request $request) {
         $user_id = auth()->user()->id;
+        $fullname = auth()->user()->firstname . " " . auth()->user()->lastname;
         $friend_id = $request->input('friend_id');
+
+        $recipientUser = User::find($friend_id);
 
         // Create a new friendship using Eloquent
         $friendship = Friendships::create([
@@ -75,6 +79,9 @@ class FriendController extends Controller
         ]);
 
         if($friendship) {
+            $recipientUser->notify(new FriendRequestNotification(
+                $fullname, 'sent you a friend request', 'find-friends'
+            ));
             return redirect()->back()->with('success', 'Friend request sent');
         } else {
             return redirect()->back()->with('info', 'Something went wrong');;
