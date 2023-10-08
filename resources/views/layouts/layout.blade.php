@@ -25,6 +25,19 @@
      <link href="{{ asset('css/tailwind.css') }}" rel="stylesheet">
      <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
+     <style>
+        .read-more a {
+            color: #007bff;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .read-less {
+            color: #007bff;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+     </style>
 
 </head>
 <body>
@@ -96,6 +109,9 @@
     <script src="{{ asset('js/custom.js') }}"></script>
     <script src="{{ asset('js/bootstrap-select..min.js') }}"></script>
     <script src="{{ asset('ionicons/dist/ionicons.js') }}"></script>
+
+
+
 
 
 

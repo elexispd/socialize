@@ -52,6 +52,11 @@ Route::group(["middleware" => "auth"], function() {
 
     Route::patch('/markAsRead/{id}', [App\Http\Controllers\NotificationController::class, 'markAsRead'])->name('markAsRead');
 
+
+    Route::post('/post', [App\Http\Controllers\PostController::class, 'store'])->name('post');
+
+
+
 });
 
 

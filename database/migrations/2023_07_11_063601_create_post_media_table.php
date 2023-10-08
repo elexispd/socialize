@@ -15,12 +15,11 @@ return new class extends Migration
     {
         Schema::create('post_media', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("user_id", 50);
-            $table->foreignId("media_path", 50);
-            $table->string("media_name", 100);
+            $table->foreignId("post_id", 50);
+            $table->string("media_path", 200);
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('posts')->onDelete('cascade');
         });
     }
 

@@ -27,7 +27,9 @@ class UserController extends Controller
         $friends = $user->allFriendsWithCount();
         $mySentRequests = $this->sentRequest();
 
-        return view('timeline.index', compact('user', 'friends', 'mySentRequests'));
+        $posts = $user->myPosts;
+
+        return view('timeline.index', compact('user', 'friends', 'mySentRequests', 'posts'));
     }
 
     public function sentRequest() {

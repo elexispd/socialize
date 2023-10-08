@@ -67,11 +67,15 @@
 
                 @include('partials._birthdays')
 
+                <div class="flex justify-center">
+                    @include('partials._message')
+                </div>
+
                 <!-- create post -->
                 @include('partials._modal-post')
 
                 @include('partials._post')
-                @include('partials._post')
+
 
 
 

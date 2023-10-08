@@ -142,6 +142,10 @@ class User extends Authenticatable
                ->wherePivot("status", 0);
     }
 
+    public function myPosts() {
+        return $this->hasMany(Post::class, 'user_id');
+    }
+
 
 
 
