@@ -143,7 +143,12 @@ class User extends Authenticatable
     }
 
     public function myPosts() {
-        return $this->hasMany(Post::class, 'user_id');
+        return $this->hasMany(Post::class, 'user_id')->orderBy('id', 'desc');
+    }
+
+    public function userDetails($user_id) {
+        $user = $this::find($user_id);
+        return $user;
     }
 
 

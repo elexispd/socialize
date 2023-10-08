@@ -17,8 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->text('content');
-            $table->string('photo')->nullable();
-            $table->string('photo2')->nullable();
+            $table->string('post_bg')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

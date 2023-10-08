@@ -13,6 +13,8 @@ use App\Notifications\FriendRequestNotification;
 class UserController extends Controller
 
 {
+
+
     public function timeline($username=null)
     {
         if ($username) {

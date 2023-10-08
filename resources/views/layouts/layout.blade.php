@@ -37,6 +37,18 @@
             text-decoration: underline;
             cursor: pointer;
         }
+
+        .content-colour , .content::placeholder {
+            color: white;
+        }
+
+
+        .content_bg_inherit {
+            background-color: inherit;
+        }
+
+
+
      </style>
 
 </head>

@@ -10,8 +10,10 @@
                     <img src="{{ asset('assets/images/avatars/avatar-2.jpg') }}" class="bg-gray-200 border border-white rounded-full w-10 h-10">
                 </a>
                 <div class="flex-1 font-semibold capitalize">
-                    <a href="#" class="text-black dark:text-gray-100"> Johnson smith </a>
-                    <div class="text-gray-700 flex items-center space-x-2"> 5 <span> hrs </span> <ion-icon name="people"></ion-icon></div>
+                    <a href="#" class="text-black dark:text-gray-100">
+                        {{ auth()->user()->getFullname() }}
+                    </a>
+                    <div class="text-gray-700 flex items-center space-x-2"> {{ $post->created_at->diffForHumans() }}<ion-icon name="people"></ion-icon></div>
                 </div>
             </div>
             <div>
@@ -69,11 +71,7 @@
                             <span class="read-more" data-content="{{ $post->content }}"><a href="#">Read more</a></span>
                     </p>
                 @else
-                @php
-                    $bgColors = ['bg-red-400', 'bg-blue-400', 'bg-green-400', 'bg-purple-400', 'bg-yellow-400', 'bg-red-400', 'bg-voilet-400', 'bg-black-400'];
-                    $randomBgColor = $bgColors[array_rand($bgColors)];
-                @endphp
-                    <div class="{{ $randomBgColor }} text-center py-40">
+                    <div class="{{ $post->post_bg }} text-center py-40">
                         {{ $post->content }}
                     </div>
                 @endif
@@ -180,57 +178,6 @@
 @endforeach
 
 
-{{-- <script>
-    $(document).ready(function() {
-        $('.read-more a').click(function(e){
-            e.preventDefault();
-            let content = $(this).closest('.post').find('.content');
-            content.html(content.data('full-content') + ' <span class="read-less">Read less</span>');
-
-            $(this).hide();
-        })
-
-    });
-
-    $(document).ready(function() {
-        $('.read-less').click(function(e) {
-            e.preventDefault();
-            console.log(3)
-            // let content = $(this).closest('.post').find('.content');
-            // let truncatedContent = content.data('full-content').substring(0, 150);
-            // // Show the truncated content
-            // content.html(truncatedContent + '... <a href="#" class="read-more">Read more</a>');
-            // $(this).hide();
-        });
-    })
-</script> --}}
-
-
-{{-- <script>
-    $(document).ready(function() {
-        // "Read more" click event
-        $(document).on('click', '.read-more a', function(e) {
-            e.preventDefault();
-
-            let content = $(this).closest('.post').find('.content');
-            content.html(content.data('full-content') + ' <span class="read-less">Read less</span>');
-
-            $(this).hide();
-        });
-
-        // "Read less" click event (using event delegation)
-        $(document).on('click', '.read-less', function(e) {
-            e.preventDefault();
-            let content = $(this).closest('.post').find('.content');
-            let truncatedContent = content.data('full-content').substring(0, 150);
-            // Show the truncated content
-            content.html(truncatedContent + '... <a href="#" class="read-more">Read more</a>');
-            $(this).hide();
-
-        });
-    });
-
-</script> --}}
 
 <script>
     $(document).ready(function() {

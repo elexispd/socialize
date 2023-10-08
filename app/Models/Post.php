@@ -9,5 +9,11 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id','content'];
+    protected $fillable = ['user_id','content', 'post_bg'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

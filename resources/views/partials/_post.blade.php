@@ -1,18 +1,22 @@
-<div class="card lg:mx-0 uk-animation-slide-bottom-small">
+
+
+
+@foreach ($posts as $post)
+
+
+    <div class="card lg:mx-0 uk-animation-slide-bottom-small">
 
     <!-- post header-->
     <div class="flex justify-between items-center lg:p-4 p-2.5">
         <div class="flex flex-1 items-center space-x-4">
             <a href="#">
-                <img src="{{ auth()->user()->getAvatar() }}" class="bg-gray-200 border border-white rounded-full w-10 h-10">
+                <img src="{{ asset('assets/images/avatars/avatar-2.jpg') }}" class="bg-gray-200 border border-white rounded-full w-10 h-10">
             </a>
-            <div class="flex-1 font-semibold">
-                <a href="{{ Route('myTimeline') }}" class="text-black dark:text-gray-100 capitalize">
-                    @auth
-                        {{ auth()->user()->getFullname() }}
-                    @endauth
-                 </a>
-                <div class="text-gray-700 flex items-center space-x-2"> 5 <span> hrs </span> <ion-icon name="people"></ion-icon></div>
+            <div class="flex-1 font-semibold capitalize">
+                <a href="#" class="text-black dark:text-gray-100">
+                    {{ auth()->user()->getFullname() }}
+                </a>
+                <div class="text-gray-700 flex items-center space-x-2"> {{ $post->created_at->diffForHumans() }}<ion-icon name="people"></ion-icon></div>
             </div>
         </div>
         <div>
@@ -55,10 +59,26 @@
         </div>
     </div>
 
-    <div uk-lightbox>
-        <a href="images/avatars/avatar-lg-3.jpg">
-            <img src="images/avatars/avatar-lg-4.jpg" alt="" class="max-h-96 w-full object-cover">
-        </a>
+    <div>
+        <div uk-lightbox>
+            {{-- <a href="{{ asset('assets/images/avatars/avatar-lg-3.jpg') }}">
+                <img src="{{ asset('assets/images/avatars/avatar-lg-4.jpg') }}" alt="" class="max-h-96 w-full object-cover">
+            </a> --}}
+
+        </div>
+        <div class=" post">
+            @if (strlen($post->content) > 150)
+                <p class="content p-4 space-y-3" data-full-content="{{ $post->content }}">
+                    {{ Str::limit($post->content, 150) }}
+
+                        <span class="read-more" data-content="{{ $post->content }}"><a href="#">Read more</a></span>
+                </p>
+            @else
+                <div class="{{ $post->post_bg }} text-center py-40">
+                    {{ $post->content }}
+                </div>
+            @endif
+        </div>
     </div>
 
 
@@ -92,9 +112,9 @@
         </div>
         <div class="flex items-center space-x-3 pt-2">
             <div class="flex items-center">
-                <img src="images/avatars/avatar-1.jpg" alt="" class="w-6 h-6 rounded-full border-2 border-white dark:border-gray-900">
-                <img src="images/avatars/avatar-4.jpg" alt="" class="w-6 h-6 rounded-full border-2 border-white dark:border-gray-900 -ml-2">
-                <img src="images/avatars/avatar-2.jpg" alt="" class="w-6 h-6 rounded-full border-2 border-white dark:border-gray-900 -ml-2">
+                <img src="{{ asset('assets/images/avatars/avatar-1.jpg') }}" alt="" class="w-6 h-6 rounded-full border-2 border-white dark:border-gray-900">
+                <img src="{{ asset('assets/images/avatars/avatar-4.jpg') }}" alt="" class="w-6 h-6 rounded-full border-2 border-white dark:border-gray-900 -ml-2">
+                <img src="{{ asset('assets/images/avatars/avatar-2.jpg') }}" alt="" class="w-6 h-6 rounded-full border-2 border-white dark:border-gray-900 -ml-2">
             </div>
             <div class="dark:text-gray-100">
                 Liked <strong> Johnson</strong> and <strong> 209 Others </strong>
@@ -104,7 +124,7 @@
         <div class="border-t py-4 space-y-4 dark:border-gray-600">
             <div class="flex">
                 <div class="w-10 h-10 rounded-full relative flex-shrink-0">
-                    <img src="images/avatars/avatar-1.jpg" alt="" class="absolute h-full rounded-full w-full">
+                    <img src="{{ asset('assets/images/avatars/avatar-1.jpg') }}" alt="" class="absolute h-full rounded-full w-full">
                 </div>
                 <div>
                     <div class="text-gray-700 py-2 px-3 rounded-md bg-gray-100 relative lg:ml-5 ml-2 lg:mr-12  dark:bg-gray-800 dark:text-gray-100">
@@ -121,7 +141,7 @@
             </div>
             <div class="flex">
                 <div class="w-10 h-10 rounded-full relative flex-shrink-0">
-                    <img src="images/avatars/avatar-1.jpg" alt="" class="absolute h-full rounded-full w-full">
+                    <img src="{{ asset('assets/images/avatars/avatar-1.jpg') }}" alt="" class="absolute h-full rounded-full w-full">
                 </div>
                 <div>
                     <div class="text-gray-700 py-2 px-3 rounded-md bg-gray-100 relative lg:ml-5 ml-2 lg:mr-12  dark:bg-gray-800 dark:text-gray-100">
@@ -158,3 +178,4 @@
     </div>
 
 </div>
+@endforeach
